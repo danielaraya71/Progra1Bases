@@ -11,7 +11,39 @@ public class conexion {
     
     static Connection conexion=null;
     
+    //Metodo para establecer conexion con la base de datos
     public static Connection establecerConexion(){
         String url= "jdbc:sqlserver://LAPTOP-VB4EU9DH\\SQLEXPRESS:1433;databaseName=rent_a_car"; //ESTA ES LA URL DE LA BASE DE DATOS, CAMBIA EN CADA COMPUTADORA
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        }
+        catch (ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null,"No se pudo realizar conexion, revisar drive" + e.getMessage(),
+            "Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+        try{
+            conexion= DriverManager.getConnection(url,"sa","sa");// LOS PARAMETROS DE LA getConnection son usuario sa y la contrasenia que hayan puesto
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error" + e.getMessage(),
+            "Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+        return conexion;
+    }
+    
+    //Metodo para realizar una consulta a la base de datos
+    public static ResultSet Consulta(String consulta){
+        Connection conexion=establecerConexion();
+        Statement declaracion;
+        try{
+            declaracion=conexion.createStatement();
+            ResultSet respuesta= declaracion.executeQuery(consulta);
+            return respuesta;
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error en la consulta" + e.getMessage(),
+            "Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 }
