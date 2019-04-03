@@ -238,7 +238,7 @@ public class LogIn extends javax.swing.JFrame {
 
     private void btIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresar1ActionPerformed
         // TODO add your handling code here:
-        PaginaPrincipal ventana = new PaginaPrincipal();
+        MainView ventana = new MainView();
         ventana.setVisible(true); 
     }//GEN-LAST:event_btIngresar1ActionPerformed
 
