@@ -64,6 +64,119 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
+         
+          public void CargarProvincia () {
+           jComboBoxtProvinciaEmpresa.removeAllItems();
+           jComboBoxtProvinciaCliente.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreProvincia from provincia");
+           try {
+               while (res.next()){
+                    jComboBoxtProvinciaEmpresa.addItem(res.getString("nombreProvincia"));
+                    jComboBoxtProvinciaCliente.addItem(res.getString("nombreProvincia"));
+                }
+               
+           }   
+                catch (Exception e) {
+                   }
+           }
+          public void CargarCanton() {
+           jComboBoxCatonCliente.removeAllItems();
+           jComboBoxCatonEmpresa.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombre_canton from canton");
+           try {
+               while (res.next()){
+                    jComboBoxCatonCliente.addItem(res.getString("nombre_canton"));
+                    jComboBoxCatonEmpresa.addItem(res.getString("nombre_canton"));
+                }
+           }   
+                catch (Exception e) {
+                   }
+           }
+          // select nombreDistrito from distrito join provincia on provincia.idProvincia=distrito.idProvincia AND nombreProvincia='San Jose'
+          public void CargarDistrito () {
+           jComboBoxDistritoCliente.removeAllItems();
+           jComboBoxDistritoEmpresa.removeAllItems();
+//           String provincia = ((String) jComboBoxtProvinciaEmpresa .getSelectedItem());
+//           String distritos;
+//           distritos = "select nombreDistrito from distrito join provincia on provincia.idProvincia=distrito.idProvincia AND nombreProvincia="+""+provincia+"";
+//           res =Conexiones.conexion.Consulta(distritos);
+           res =Conexiones.conexion.Consulta("select nombreDistrito from distrito");
+           try {
+               while (res.next()){
+                    jComboBoxDistritoCliente.addItem(res.getString("nombreDistrito"));
+                    jComboBoxDistritoEmpresa.addItem(res.getString("nombreDistrito"));
+                }
+           }   
+                catch (Exception e) {
+                   }
+           }
+          //
+          public void CargarMarca () {
+           jComboBoxdefMarca.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreMarca from marca");
+           try {
+               while (res.next()){
+                    jComboBoxdefMarca.addItem(res.getString("nombreMarca"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
+          public void CargarEstilo () {
+           jComboBoxdefEstilo.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreEstilo from estilo");
+           try {
+               while (res.next()){
+                    jComboBoxdefEstilo.addItem(res.getString("nombreEstilo"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
+          public void CargarColor () {
+           jComboBoxdefColor.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreColor from color");
+           try {
+               while (res.next()){
+                      jComboBoxdefColor.addItem(res.getString(" nombreColor"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
+          public void CargarSede () {
+           jComboBoxdefSede.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreSede from sede");
+           try {
+               while (res.next()){
+                      jComboBoxdefSede.addItem(res.getString(" nombreSede"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }  
+         public void CargarTransmision () {
+           jComboBoxdefTransmision.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreTransmision from transmision");
+           try {
+               while (res.next()){
+                      jComboBoxdefTransmision.addItem(res.getString("nombreTransmision"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
+         public void CargarEstado () {
+           jComboBoxdefEstado.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreEstado from estado");
+           try {
+               while (res.next()){
+                     jComboBoxdefEstado.addItem(res.getString("nombreEstado"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,15 +227,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jListProvinciaEmpresa = new javax.swing.JList<>();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jListCatonempresa = new javax.swing.JList<>();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jListDistritoEmpresa = new javax.swing.JList<>();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextAreaSennasEmpresa = new javax.swing.JTextArea();
         btRegistrarempresa = new javax.swing.JButton();
+        jComboBoxtProvinciaEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxCatonEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxDistritoEmpresa = new javax.swing.JComboBox<>();
+        jButtonBuscarDistritos = new javax.swing.JButton();
         jPanelNuevosClientes = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -150,15 +261,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListProvinciaCliente = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListCatonCliente = new javax.swing.JList<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jListDistritoCliente = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         btRegistrarcliente = new javax.swing.JButton();
+        jComboBoxtProvinciaCliente = new javax.swing.JComboBox<>();
+        jComboBoxCatonCliente = new javax.swing.JComboBox<>();
+        jComboBoxDistritoCliente = new javax.swing.JComboBox<>();
         jPanelIngresarVehiculos = new javax.swing.JPanel();
         lblMarca1 = new javax.swing.JLabel();
         lblMarca = new javax.swing.JLabel();
@@ -216,14 +324,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelReservacionesLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanelReservacionesLayout.setVerticalGroup(
             jPanelReservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelReservacionesLayout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Reservaciones", jPanelReservaciones);
@@ -291,7 +399,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addGap(195, 195, 195)
                                 .addComponent(lblMarca4))
                             .addComponent(jButtonCargarDatos))
-                        .addContainerGap(263, Short.MAX_VALUE))
+                        .addContainerGap(271, Short.MAX_VALUE))
                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                         .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblprecio11)
@@ -312,7 +420,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                         .addComponent(lblColores1)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 54, Short.MAX_VALUE))
+                                .addGap(0, 62, Short.MAX_VALUE))
                             .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                                 .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
@@ -377,22 +485,24 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButtonCargarDatos)
                 .addGap(55, 55, 55)
                 .addComponent(btRegistrarNuevoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelNuevosServiciosLayout = new javax.swing.GroupLayout(jPanelNuevosServicios);
         jPanelNuevosServicios.setLayout(jPanelNuevosServiciosLayout);
         jPanelNuevosServiciosLayout.setHorizontalGroup(
             jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 607, Short.MAX_VALUE)
             .addGroup(jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelIngresarVehiculos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelNuevosServiciosLayout.setVerticalGroup(
             jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
             .addGroup(jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelIngresarVehiculos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelNuevosServiciosLayout.createSequentialGroup()
+                    .addComponent(jPanelIngresarVehiculos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jTabbedPaneNuevosRegistros.addTab("Servicios de mantenimiento", jPanelNuevosServicios);
@@ -435,27 +545,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel33.setForeground(new java.awt.Color(240, 240, 240));
         jLabel33.setText("Señas");
 
-        jListProvinciaEmpresa.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jListProvinciaEmpresa);
-
-        jListCatonempresa.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane6.setViewportView(jListCatonempresa);
-
-        jListDistritoEmpresa.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane7.setViewportView(jListDistritoEmpresa);
-
         jTextAreaSennasEmpresa.setColumns(20);
         jTextAreaSennasEmpresa.setRows(5);
         jScrollPane8.setViewportView(jTextAreaSennasEmpresa);
@@ -465,6 +554,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btRegistrarempresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarempresaActionPerformed(evt);
+            }
+        });
+
+        jComboBoxtProvinciaEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxCatonEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxDistritoEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButtonBuscarDistritos.setText("Mostrar distritos");
+        jButtonBuscarDistritos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarDistritosActionPerformed(evt);
             }
         });
 
@@ -502,18 +604,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel30))
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(jLabel31)
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel32)
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
+                                .addComponent(jLabel30)
+                                .addGap(0, 139, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonBuscarDistritos)
+                                    .addComponent(jComboBoxtProvinciaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addGap(141, 141, 141)
+                                .addComponent(jLabel32))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jComboBoxCatonEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jComboBoxDistritoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,31 +643,31 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(txttelefonoempresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxtProvinciaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxDistritoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel31)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxCatonEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBuscarDistritos)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addGap(106, 106, 106))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel32)
-                                    .addComponent(jLabel31))
-                                .addGap(39, 39, 39)))
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel33))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                                .addComponent(btRegistrarempresa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(207, 207, 207))))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel33))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(btRegistrarempresa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(207, 207, 207))))
         );
 
         javax.swing.GroupLayout jPanelNuevaEmpresaLayout = new javax.swing.GroupLayout(jPanelNuevaEmpresa);
@@ -662,27 +771,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(240, 240, 240));
         jLabel21.setText("Señas");
 
-        jListProvinciaCliente.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jListProvinciaCliente);
-
-        jListCatonCliente.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jListCatonCliente);
-
-        jListDistritoCliente.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jListDistritoCliente);
-
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane5.setViewportView(jTextArea2);
@@ -694,6 +782,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 btRegistrarclienteActionPerformed(evt);
             }
         });
+
+        jComboBoxtProvinciaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxCatonCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxDistritoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -726,7 +820,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                         .addComponent(txtPrimernombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtsegundonombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(0, 8, Short.MAX_VALUE))))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel6)))
@@ -752,33 +846,35 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtfechaExpiracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btImagenLicencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                        .addComponent(btImagenLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(23, 23, 23))))
                             .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btRegistrarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jComboBoxtProvinciaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(17, 17, 17)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel21)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel19)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGap(147, 147, 147)
                                         .addComponent(jLabel20)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btRegistrarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)))))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jComboBoxCatonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jComboBoxDistritoCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(39, 39, 39))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -786,9 +882,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtcedulacliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -823,26 +919,33 @@ public class VistaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(txtfechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17))
+                    .addComponent(btImagenLicencia))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(btRegistrarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(btImagenLicencia))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxtProvinciaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxDistritoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCatonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(52, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btRegistrarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanelNuevosClientesLayout = new javax.swing.GroupLayout(jPanelNuevosClientes);
@@ -854,7 +957,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanelNuevosClientesLayout.setVerticalGroup(
             jPanelNuevosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNuevosClientesLayout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -951,7 +1054,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtdefprecio, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jComboBoxdefColor, javax.swing.GroupLayout.Alignment.LEADING, 0, 143, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblprecio3)
                     .addComponent(lblprecio4)
@@ -1051,9 +1154,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 668, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1130,8 +1231,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void jButtonCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarDatosActionPerformed
          CargarEmpresa ();
          CargarMantenimiento ();
-            CargarEmpresa ();
+         CargarPlaca ();
+         CargarProvincia();
+         CargarCanton();
+         CargarDistrito();
+         CargarMarca () ;
+        CargarEstilo ();
+        CargarColor ();
+        CargarSede ();
+        CargarTransmision ();
+        CargarEstado ();                         
+                
     }//GEN-LAST:event_jButtonCargarDatosActionPerformed
+
+    private void jButtonBuscarDistritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarDistritosActionPerformed
+       
+    }//GEN-LAST:event_jButtonBuscarDistritosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1175,7 +1290,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btRegistrarVehiculo;
     private javax.swing.JButton btRegistrarcliente;
     private javax.swing.JButton btRegistrarempresa;
+    private javax.swing.JButton jButtonBuscarDistritos;
     private javax.swing.JButton jButtonCargarDatos;
+    private javax.swing.JComboBox<String> jComboBoxCatonCliente;
+    private javax.swing.JComboBox<String> jComboBoxCatonEmpresa;
+    private javax.swing.JComboBox<String> jComboBoxDistritoCliente;
+    private javax.swing.JComboBox<String> jComboBoxDistritoEmpresa;
     private javax.swing.JComboBox<String> jComboBoxEscogerEmpresa;
     private javax.swing.JComboBox<String> jComboBoxEscogerPlaca;
     private javax.swing.JComboBox<String> jComboBoxdefColor;
@@ -1184,6 +1304,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxdefMarca;
     private javax.swing.JComboBox<String> jComboBoxdefSede;
     private javax.swing.JComboBox<String> jComboBoxdefTransmision;
+    private javax.swing.JComboBox<String> jComboBoxtProvinciaCliente;
+    private javax.swing.JComboBox<String> jComboBoxtProvinciaEmpresa;
     private javax.swing.JComboBox<String> jComboBoxtipoMantenimiento;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1207,12 +1329,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jListCatonCliente;
-    private javax.swing.JList<String> jListCatonempresa;
-    private javax.swing.JList<String> jListDistritoCliente;
-    private javax.swing.JList<String> jListDistritoEmpresa;
-    private javax.swing.JList<String> jListProvinciaCliente;
-    private javax.swing.JList<String> jListProvinciaEmpresa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1222,15 +1338,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelNuevosClientes;
     private javax.swing.JPanel jPanelNuevosServicios;
     private javax.swing.JPanel jPanelReservaciones;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPaneNuevosRegistros;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
