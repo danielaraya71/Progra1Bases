@@ -5,18 +5,65 @@
  */
 package Interfaz;
 
+import Conexiones.*; 
+import static Conexiones.conexion.Consulta;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+ 
 /**
  *
  * @author ERICKA
  */
 public class VistaPrincipal extends javax.swing.JFrame {
-
+    
+    
+    static ResultSet res;
+  //  conexion Conectar = new conexion();
     /**
      * Creates new form VistaPrincipal
      */
     public VistaPrincipal() {
         initComponents();
     }
+    
+       public void CargarEmpresa () {
+           jComboBoxEscogerEmpresa.removeAllItems();
+           res =Conexiones.conexion.Consulta("select razonSocial from empresa");
+           try {
+               while (res.next()){
+                    jComboBoxEscogerEmpresa.addItem(res.getString("razonSocial"));
+                }
+           }   
+                catch (Exception e) {
+                   }
+           }
+        public void CargarPlaca () {
+           jComboBoxEscogerPlaca.removeAllItems();
+           res =Conexiones.conexion.Consulta("select placa from vehiculo");
+           try {
+               while (res.next()){
+                    jComboBoxEscogerPlaca.addItem(res.getString("placa"));
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
+         public void CargarMantenimiento () {
+           jComboBoxtipoMantenimiento.removeAllItems();
+           res =Conexiones.conexion.Consulta("select nombreTipo from tipo");
+           try {
+               while (res.next()){
+                    jComboBoxtipoMantenimiento.addItem(res.getString("nombreTipo"));
+                }
+           }   
+                catch (Exception e) {
+                   }
+           }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,6 +77,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPanelPrincipal = new javax.swing.JTabbedPane();
         jPanelReservaciones = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTableCarrosDisponibles = new javax.swing.JTable();
         jTabbedPaneNuevosRegistros = new javax.swing.JTabbedPane();
         jPanelNuevosServicios = new javax.swing.JPanel();
         jPanelIngresarVehiculos1 = new javax.swing.JPanel();
@@ -45,15 +94,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lblprecio13 = new javax.swing.JLabel();
         txtdefFechaFinal = new javax.swing.JTextField();
         txtdefIDMantenimiento = new javax.swing.JTextField();
-        btRegistrarVehiculo1 = new javax.swing.JButton();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jListEscogerPlaca = new javax.swing.JList<>();
+        btRegistrarNuevoMantenimiento = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextAreaSennasEmpresa1 = new javax.swing.JTextArea();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jListescogerEmpresa = new javax.swing.JList<>();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jListtipoMantenimiento = new javax.swing.JList<>();
+        jButtonCargarDatos = new javax.swing.JButton();
+        jComboBoxEscogerEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxEscogerPlaca = new javax.swing.JComboBox<>();
+        jComboBoxtipoMantenimiento = new javax.swing.JComboBox<>();
         jPanelNuevaEmpresa = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -149,15 +196,34 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTableCarrosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(jTableCarrosDisponibles);
+
         javax.swing.GroupLayout jPanelReservacionesLayout = new javax.swing.GroupLayout(jPanelReservaciones);
         jPanelReservaciones.setLayout(jPanelReservacionesLayout);
         jPanelReservacionesLayout.setHorizontalGroup(
             jPanelReservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+            .addGroup(jPanelReservacionesLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanelReservacionesLayout.setVerticalGroup(
             jPanelReservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+            .addGroup(jPanelReservacionesLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Reservaciones", jPanelReservaciones);
@@ -183,91 +249,87 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lblprecio13.setText("ID ");
 
-        btRegistrarVehiculo1.setBackground(new java.awt.Color(255, 153, 0));
-        btRegistrarVehiculo1.setText("Registrar nuevo Mantenimiento");
-        btRegistrarVehiculo1.addActionListener(new java.awt.event.ActionListener() {
+        btRegistrarNuevoMantenimiento.setBackground(new java.awt.Color(255, 153, 0));
+        btRegistrarNuevoMantenimiento.setText("Registrar nuevo Mantenimiento");
+        btRegistrarNuevoMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRegistrarVehiculo1ActionPerformed(evt);
+                btRegistrarNuevoMantenimientoActionPerformed(evt);
             }
         });
-
-        jListEscogerPlaca.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane9.setViewportView(jListEscogerPlaca);
 
         jTextAreaSennasEmpresa1.setColumns(20);
         jTextAreaSennasEmpresa1.setRows(5);
         jScrollPane10.setViewportView(jTextAreaSennasEmpresa1);
 
-        jListescogerEmpresa.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButtonCargarDatos.setText("Cargar Datos");
+        jButtonCargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCargarDatosActionPerformed(evt);
+            }
         });
-        jScrollPane11.setViewportView(jListescogerEmpresa);
 
-        jListtipoMantenimiento.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane12.setViewportView(jListtipoMantenimiento);
+        jComboBoxEscogerEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxEscogerPlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxtipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanelIngresarVehiculos1Layout = new javax.swing.GroupLayout(jPanelIngresarVehiculos1);
         jPanelIngresarVehiculos1.setLayout(jPanelIngresarVehiculos1Layout);
         jPanelIngresarVehiculos1Layout.setHorizontalGroup(
             jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btRegistrarNuevoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150))
             .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblprecio11)
-                    .addComponent(lblprecio12)
-                    .addComponent(lblprecio13)
-                    .addComponent(lblMarca5))
-                .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
                         .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdefprecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                                .addGap(195, 195, 195)
+                                .addComponent(lblMarca4))
+                            .addComponent(jButtonCargarDatos))
+                        .addContainerGap(263, Short.MAX_VALUE))
+                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                        .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblprecio11)
+                            .addComponent(lblprecio12)
+                            .addComponent(lblprecio13)
+                            .addComponent(lblMarca5))
+                        .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtdefprecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                                        .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtdefIDMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtdefFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtdefFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(61, 61, 61)
+                                        .addComponent(lblColores1)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 54, Short.MAX_VALUE))
                             .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                                 .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtdefIDMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtdefFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtdefFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(61, 61, 61)
-                                .addComponent(lblColores1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 54, Short.MAX_VALUE))
-                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                        .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(lblMarca3)
-                                .addGap(143, 143, 143)
-                                .addComponent(lbltipo1))
-                            .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(131, 131, 131)
-                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(lblMarca3))
+                                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jComboBoxEscogerPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(102, 102, 102)
+                                .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbltipo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxEscogerEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(lblMarca4))
-                    .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelIngresarVehiculos1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btRegistrarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
+                .addGap(212, 212, 212)
+                .addComponent(jComboBoxtipoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelIngresarVehiculos1Layout.setVerticalGroup(
             jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,20 +362,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(lbltipo1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxEscogerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxEscogerPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(lblMarca3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36)
+                        .addComponent(lblMarca3)))
+                .addGap(72, 72, 72)
                 .addComponent(lblMarca4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxtipoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jButtonCargarDatos)
                 .addGap(55, 55, 55)
-                .addComponent(btRegistrarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(btRegistrarNuevoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelNuevosServiciosLayout = new javax.swing.GroupLayout(jPanelNuevosServicios);
@@ -326,7 +390,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         );
         jPanelNuevosServiciosLayout.setVerticalGroup(
             jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
+            .addGap(0, 547, Short.MAX_VALUE)
             .addGroup(jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelIngresarVehiculos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1058,9 +1122,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcedulaJuridicaActionPerformed
 
-    private void btRegistrarVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarVehiculo1ActionPerformed
+    private void btRegistrarNuevoMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarNuevoMantenimientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btRegistrarVehiculo1ActionPerformed
+      
+    }//GEN-LAST:event_btRegistrarNuevoMantenimientoActionPerformed
+
+    private void jButtonCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarDatosActionPerformed
+         CargarEmpresa ();
+         CargarMantenimiento ();
+            CargarEmpresa ();
+    }//GEN-LAST:event_jButtonCargarDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1100,16 +1171,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btImagenLicencia;
     private javax.swing.JButton btIngresarImagen;
+    private javax.swing.JButton btRegistrarNuevoMantenimiento;
     private javax.swing.JButton btRegistrarVehiculo;
-    private javax.swing.JButton btRegistrarVehiculo1;
     private javax.swing.JButton btRegistrarcliente;
     private javax.swing.JButton btRegistrarempresa;
+    private javax.swing.JButton jButtonCargarDatos;
+    private javax.swing.JComboBox<String> jComboBoxEscogerEmpresa;
+    private javax.swing.JComboBox<String> jComboBoxEscogerPlaca;
     private javax.swing.JComboBox<String> jComboBoxdefColor;
     private javax.swing.JComboBox<String> jComboBoxdefEstado;
     private javax.swing.JComboBox<String> jComboBoxdefEstilo;
     private javax.swing.JComboBox<String> jComboBoxdefMarca;
     private javax.swing.JComboBox<String> jComboBoxdefSede;
     private javax.swing.JComboBox<String> jComboBoxdefTransmision;
+    private javax.swing.JComboBox<String> jComboBoxtipoMantenimiento;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1136,11 +1211,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> jListCatonempresa;
     private javax.swing.JList<String> jListDistritoCliente;
     private javax.swing.JList<String> jListDistritoEmpresa;
-    private javax.swing.JList<String> jListEscogerPlaca;
     private javax.swing.JList<String> jListProvinciaCliente;
     private javax.swing.JList<String> jListProvinciaEmpresa;
-    private javax.swing.JList<String> jListescogerEmpresa;
-    private javax.swing.JList<String> jListtipoMantenimiento;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1153,7 +1225,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1161,9 +1232,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPaneNuevosRegistros;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
+    private javax.swing.JTable jTableCarrosDisponibles;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextAreaSennasEmpresa;
     private javax.swing.JTextArea jTextAreaSennasEmpresa1;
