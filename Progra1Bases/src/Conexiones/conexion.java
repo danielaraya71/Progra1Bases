@@ -14,9 +14,8 @@ public class conexion {
     //Metodo para establecer conexion con la base de datos
     public static Connection establecerConexion(){
        // revisar con el video
-       // URL MARIA JOSE: jdbc:sqlserver://DESKTOP-E051GG3\SQLEXPRESS:1433;databaseName=rent_a_car
-       // URL DANIEL: jdbc:sqlserver://LAPTOP-VB4EU9DH\\SQLEXPRESS:1433;databaseName=rent_a_car
-       String url= "jdbc:sqlserver://DESKTOP-E051GG3\\SQLEXPRESS:1433;databaseName=rent_a_car"; //ESTA ES LA URL DE LA BASE DE DATOS, CAMBIA EN CADA COMPUTADORA
+        String url= "jdbc:sqlserver://LAPTOP-VB4EU9DH\\SQLEXPRESS:1433;databaseName=rent_a_car"; //URL DANIEL
+        //String url= "jdbc:sqlserver://DESKTOP-E051GG3\\SQLEXPRESS:1433;databaseName=rent_a_car"; //URL MARI MONTERO
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
              System.out.println("HACE EL TRY DE LINEA 21");
