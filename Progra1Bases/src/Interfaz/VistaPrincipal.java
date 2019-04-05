@@ -1233,7 +1233,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void btRegistrarempresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarempresaActionPerformed
         int exito=0;
-        exito= procedimiento.AgregarEmpresa("Servimas", 122234, 108675, 1, 1, 1051, "No disponible");
+        exito= procedimiento.AgregarEmpresa(txtRazonSocial.getText(),Integer.parseInt(txtcedulaJuridica.getText().toString()), 
+                Integer.parseInt(txttelefonoempresa.getText().toString()), 1, 1, 1051, "No disponible");
         if(exito>0){
             JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
                                           "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
