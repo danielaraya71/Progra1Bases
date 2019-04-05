@@ -10,12 +10,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
  
 
 public class VistaPrincipal extends javax.swing.JFrame {
@@ -161,10 +163,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
           public void CargarEstilo () {
            jComboBoxdefEstilo.removeAllItems();
+           jComboBoxTipoFiltro.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreEstilo from estilo");
            try {
                while (res.next()){
                     jComboBoxdefEstilo.addItem(res.getString("nombreEstilo"));
+                    jComboBoxTipoFiltro.addItem(res.getString("nombreEstilo"));
                 }
            }   
                 catch (Exception e) {
@@ -218,7 +222,32 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
-
+         // select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo 
+         //from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo AND capacidad >= 300;
+           public void CargarVehiculos () {
+               DefaultTableModel modelo = (DefaultTableModel) jTableVehiculosDispo.getModel();
+               modelo.setRowCount(0);
+               String Estilo = (jComboBoxTipoFiltro .getSelectedItem().toString());
+               int Capacidad = Integer.parseInt(this.jTextFieldCapFiltro.getText().toString());
+           res =Conexiones.conexion.Consulta("select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo "
+                   + "from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo AND nombreEstilo='"+Estilo+"' AND "
+                           + "capacidad >="+Capacidad);
+           try {
+               while (res.next()){
+                     Vector vec = new Vector();
+                     vec.add(res.getInt(1));
+                     vec.add(res.getInt(2));
+                     vec.add(res.getInt(3));
+                     vec.add(res.getInt(4));
+                     vec.add(res.getInt(5));
+                     vec.add(res.getString(6));
+                     modelo.addRow(vec);
+                     jTableVehiculosDispo.setModel(modelo);
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -376,7 +405,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jTextFieldCapFiltro = new javax.swing.JTextField();
         btBuscarVehiculos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableVehiculosDispo = new javax.swing.JTable();
         btRentarVehiculo = new javax.swing.JButton();
         jPanelConsultarReserva = new javax.swing.JPanel();
 
@@ -1271,6 +1300,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jComboBoxSedeEntregaReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jRadioButtonWIFI.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonWIFI.setText("WIFI");
         jRadioButtonWIFI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1282,12 +1312,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("EXTRAS");
 
+        jRadioButtonASIS.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonASIS.setText("Asis. carretera");
 
+        jRadioButtonASIENTO.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonASIENTO.setText("Asiento niño");
 
+        jRadioButtonGPS.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonGPS.setText("GPS");
 
+        jRadioButtonDano.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonDano.setText("Daños ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1408,7 +1442,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Filtros");
 
         jLabel29.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel29.setText("Tipo");
+        jLabel29.setText("Estilo");
 
         jLabel34.setForeground(new java.awt.Color(240, 240, 240));
         jLabel34.setText("Precio");
@@ -1462,18 +1496,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableVehiculosDispo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Placa", "Capacidad", "# Puertas", "Costo DIA", "# Maletas", "Estilo"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableVehiculosDispo);
 
         btRentarVehiculo.setBackground(new java.awt.Color(255, 153, 0));
         btRentarVehiculo.setText("Rentar vehiculo seleccionado");
@@ -1489,20 +1523,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1517,8 +1551,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -1726,7 +1760,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonWIFIActionPerformed
 
     private void btBuscarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarVehiculosActionPerformed
-        // TODO add your handling code here:
+       CargarVehiculos ();
     }//GEN-LAST:event_btBuscarVehiculosActionPerformed
 
     private void btRentarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRentarVehiculoActionPerformed
@@ -1878,7 +1912,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPaneReservas;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableVehiculosDispo;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextAreaSennasEmpresa;
     private javax.swing.JTextArea jTextAreaSennasEmpresa1;
