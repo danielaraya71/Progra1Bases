@@ -18,7 +18,6 @@ public class conexion {
         //String url= "jdbc:sqlserver://DESKTOP-E051GG3\\SQLEXPRESS:1433;databaseName=rent_a_car"; //URL MARI MONTERO
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-             System.out.println("HACE EL TRY DE LINEA 21");
         }
         catch (ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"No se pudo realizar conexion, revisar drive" + e.getMessage(),
@@ -26,7 +25,6 @@ public class conexion {
         }
         try{
             conexion= DriverManager.getConnection(url,"sa","sa");// LOS PARAMETROS DE LA getConnection son usuario sa y la contrasenia que hayan puesto
-            System.out.println("HACE EL TRY DE LINEA 29");
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error" + e.getMessage(),
@@ -40,7 +38,6 @@ public class conexion {
         Connection conexion=establecerConexion();
         Statement declaracion;
         try{
-            System.out.println("HACE EL TRY DE LINEA 43");
             declaracion=conexion.createStatement();
             ResultSet respuesta= declaracion.executeQuery(consulta);
             return respuesta;
