@@ -1,5 +1,7 @@
 package Objetos;
 
+import java.io.FileInputStream;
+
 public class cliente {
     
     String primerNombre;
@@ -12,7 +14,7 @@ public class cliente {
     int idDistritoCliente;
     String correoCliente;
     int telefonoCliente;
-    private byte[] fotoLicencia;
+    private FileInputStream fotoLicencia;
     
     public cliente(){}
 
@@ -96,11 +98,11 @@ public class cliente {
         this.telefonoCliente = telefonoCliente;
     }
 
-    public byte[] getFotoLicencia() {
+    public FileInputStream getFotoLicencia() {
         return fotoLicencia;
     }
 
-    public void setFotoLicencia(byte[] fotoLicencia) {
+    public void setFotoLicencia(FileInputStream fotoLicencia) {
         this.fotoLicencia = fotoLicencia;
     }
 }

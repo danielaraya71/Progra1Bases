@@ -2,14 +2,11 @@ package Interfaz;
 
 import Conexiones.*; 
 import static Conexiones.conexion.Consulta;
+import Objetos.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1634,14 +1631,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btIngresarImagenActionPerformed
         procedimientos procedimiento= new procedimientos();
     private void btRegistrarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarclienteActionPerformed
+        cliente cliente= new cliente();
+        cliente.setPrimerNombre(txtPrimernombrecliente.getText());
+        cliente.setSegundoNombre(txtsegundonombrecliente.getText());
+        cliente.setPrimerApellido(txtprimerapellidocliente.getText());
+        cliente.setSegundoApellido(txtsegundoapellidocliente.getText());
+        cliente.setCedulaCliente(Integer.parseInt(txtcedulacliente.getText().toString()));
+        cliente.setCorreoCliente(txtcorreocliente.getText());
+        cliente.setTelefonoCliente(Integer.parseInt(txttelefono.getText().toString()));
         FileInputStream archivofoto;
         try {
             archivofoto = new FileInputStream(txtruta.getText());//Se lee la direccion de la imagen guardada en el campo de texto
             int exito = 0;
+            cliente.setFotoLicencia(archivofoto);
             //LO QUE FALTA ES EL PROBLEMA DE OBTENER EL ID DE LA DIRECCION A PARTIR DEL NOMBRE DEL LUGAR
-            exito= procedimiento.AgregarCliente(txtPrimernombrecliente.getText(),txtsegundonombrecliente.getText(),txtprimerapellidocliente.getText()
-                    ,txtsegundoapellidocliente.getText(),Integer.parseInt(txtcedulacliente.getText().toString()), 1, 1, 1051, txtcorreocliente.getText()
-                    ,Integer.parseInt(txttelefono.getText().toString()), archivofoto);
+            exito= procedimiento.AgregarCliente(cliente.getPrimerApellido(),cliente.getSegundoNombre(),cliente.getPrimerApellido()
+                    ,cliente.getSegundoApellido(),cliente.getCedulaCliente(), 1, 1, 1051,cliente.getCorreoCliente()
+                    ,Integer.parseInt(txttelefono.getText().toString()), cliente.getFotoLicencia());
             if(exito>0){
                 JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
                                               "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
