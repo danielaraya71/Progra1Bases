@@ -3,19 +3,14 @@ package Interfaz;
 import Conexiones.*; 
 import static Conexiones.conexion.Consulta;
 import Objetos.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
- 
 
 public class VistaPrincipal extends javax.swing.JFrame {
     
@@ -77,12 +72,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
-           public void CargarCantonE() {
           
+          //Metodo que carga el canton correspondiente en el registro de la empresa
+           public void CargarCantonE() {
            jComboBoxCatonEmpresa.removeAllItems();
            String provincia = (jComboBoxtProvinciaEmpresa .getSelectedItem().toString());
            String cantones;
-            cantones = "select nombreCanton from distrito join canton on "
+           cantones = "select nombre_canton from provincia join canton on "
                     + "provincia.idProvincia=canton.idProvincia AND nombreProvincia='"+provincia+"'";
            res =Conexiones.conexion.Consulta(cantones);
            
@@ -95,14 +91,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
+           
+           //Metodo que carga el canton correspondiente en el registro del cliente
           public void CargarCantonC() {
            jComboBoxCatonCliente.removeAllItems();
-  
            String provincia = (jComboBoxtProvinciaCliente .getSelectedItem().toString());
            String cantones;
-          cantones = "select nombreCanton from distrito join canton on "
+           cantones = "select nombre_canton from provincia join canton on "
                     + "provincia.idProvincia=canton.idProvincia AND nombreProvincia='"+provincia+"'";
-          res =Conexiones.conexion.Consulta(cantones);
+           res =Conexiones.conexion.Consulta(cantones);
            try {
                while (res.next()){
                     jComboBoxCatonCliente.addItem(res.getString("nombre_canton"));
@@ -112,15 +109,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
-          // select nombreDistrito from distrito join provincia on provincia.idProvincia=distrito.idProvincia AND nombreProvincia='San Jose'
+          
+         //Metodo que carga el distrito correspondiente en el registro de la empresa
           public void CargarDistritoE () {
            jComboBoxDistritoEmpresa.removeAllItems();
-           String provincia = (jComboBoxtProvinciaEmpresa .getSelectedItem().toString());
+           String canton = (jComboBoxCatonEmpresa .getSelectedItem().toString());
            String distritos;
-            distritos = "select nombreDistrito from distrito join provincia on "
-                    + "provincia.idProvincia=distrito.idProvincia AND nombreProvincia='"+provincia+"'";
+           distritos = "select nombreDistrito from distrito join canton on "
+                    + "canton.idCanton=distrito.idCanton AND nombre_canton='"+canton+"'";
            res =Conexiones.conexion.Consulta(distritos);
-      //     res =Conexiones.conexion.Consulta("select nombreDistrito from distrito");
            try {
                while (res.next()){
                     jComboBoxDistritoEmpresa.addItem(res.getString("nombreDistrito"));
@@ -129,23 +126,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
+          
+          //Metodo que carga el distrito correspondiente en el registro del cliente
           public void CargarDistritoC () {
            jComboBoxDistritoCliente.removeAllItems();
-           String provincia = (jComboBoxtProvinciaCliente .getSelectedItem().toString());
-              System.out.println(provincia);
+           String canton = (jComboBoxCatonCliente.getSelectedItem().toString());
            String distritos;
-            distritos = "select nombreDistrito from distrito join provincia on "
-                    + "provincia.idProvincia=distrito.idProvincia AND nombreProvincia='"+provincia+"'";
-           res =Conexiones.conexion.Consulta(distritos);
-      //     res =Conexiones.conexion.Consulta("select nombreDistrito from distrito");
-           try {
+           distritos = "select nombreDistrito from distrito join canton on "
+                    + "canton.idCanton=distrito.idCanton AND nombre_canton='"+canton+"'";
+            res =Conexiones.conexion.Consulta(distritos);
+            try {
                while (res.next()){
                     jComboBoxDistritoCliente.addItem(res.getString("nombreDistrito"));
                 }
-           }   
+            }   
                 catch (Exception e) {
                    }
-           }
+            }
           
           public void CargarMarca () {
            jComboBoxdefMarca.removeAllItems();
@@ -1630,8 +1627,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btIngresarImagenActionPerformed
         procedimientos procedimiento= new procedimientos();
-    private void btRegistrarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarclienteActionPerformed
         cliente cliente= new cliente();
+    private void btRegistrarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarclienteActionPerformed
         cliente.setPrimerNombre(txtPrimernombrecliente.getText());
         cliente.setSegundoNombre(txtsegundonombrecliente.getText());
         cliente.setPrimerApellido(txtprimerapellidocliente.getText());
@@ -1639,14 +1636,48 @@ public class VistaPrincipal extends javax.swing.JFrame {
         cliente.setCedulaCliente(Integer.parseInt(txtcedulacliente.getText().toString()));
         cliente.setCorreoCliente(txtcorreocliente.getText());
         cliente.setTelefonoCliente(Integer.parseInt(txttelefono.getText().toString()));
+        
+        //Se asigna el id de la provincia de acuerdo a lo que este en el comboBox
+        
+        res =Conexiones.conexion.Consulta("SELECT idProvincia FROM provincia WHERE nombreProvincia='"+jComboBoxtProvinciaCliente.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                cliente.setIdProvinciaCliente(res.getInt("idProvincia"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        //Se asigna el id del canton de acuerdo a lo que este en el comboBox
+        res =Conexiones.conexion.Consulta("SELECT idCanton FROM canton WHERE nombre_canton='"+jComboBoxCatonCliente.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                cliente.setIdCantonCliente(res.getInt("idCanton"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        //Se asigna el id del distrito de acuerdo a lo que este en el comboBox
+        res =Conexiones.conexion.Consulta("SELECT idDistrito FROM distrito WHERE nombreDistrito='"+jComboBoxDistritoCliente.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                cliente.setIdDistritoCliente(res.getInt("idDistrito"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
         FileInputStream archivofoto;
         try {
             archivofoto = new FileInputStream(txtruta.getText());//Se lee la direccion de la imagen guardada en el campo de texto
-            int exito = 0;
             cliente.setFotoLicencia(archivofoto);
-            //LO QUE FALTA ES EL PROBLEMA DE OBTENER EL ID DE LA DIRECCION A PARTIR DEL NOMBRE DEL LUGAR
-            exito= procedimiento.AgregarCliente(cliente.getPrimerApellido(),cliente.getSegundoNombre(),cliente.getPrimerApellido()
-                    ,cliente.getSegundoApellido(),cliente.getCedulaCliente(), 1, 1, 1051,cliente.getCorreoCliente()
+            
+            //Se hace la insercion en la tabla cliente
+            int exito = 0;
+            exito= procedimiento.AgregarCliente(cliente.getPrimerNombre(),cliente.getSegundoNombre(),cliente.getPrimerApellido()
+                    ,cliente.getSegundoApellido(),cliente.getCedulaCliente(), cliente.getIdProvinciaCliente(), cliente.getIdCantonCliente()
+                    ,cliente.getIdDistritoCliente(),cliente.getCorreoCliente()
                     ,Integer.parseInt(txttelefono.getText().toString()), cliente.getFotoLicencia());
             if(exito>0){
                 JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
@@ -1698,14 +1729,48 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void txtcedulaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcedulaclienteActionPerformed
-
+        empresa empresa= new empresa();
     private void btRegistrarempresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarempresaActionPerformed
+        
+        empresa.setRazonSocial(txtRazonSocial.getText());
+        empresa.setCedulaJuridica(Integer.parseInt(txtcedulaJuridica.getText().toString()));
+        empresa.setTelefono(Integer.parseInt(txttelefonoempresa.getText().toString()));
+        empresa.setSenias(jTextAreaSennasEmpresa.getText());
+        
+        //Se asigna el id de la provincia de acuerdo a lo que este en el comboBox
+        res =Conexiones.conexion.Consulta("SELECT idProvincia FROM provincia WHERE nombreProvincia='"+jComboBoxtProvinciaEmpresa.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                empresa.setIdProvincia(res.getInt("idProvincia"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        //Se asigna el id del canton de acuerdo a lo que este en el comboBox
+        res =Conexiones.conexion.Consulta("SELECT idCanton FROM canton WHERE nombre_canton='"+jComboBoxCatonEmpresa.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                empresa.setIdCanton(res.getInt("idCanton"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        //Se asigna el id del distrito de acuerdo a lo que este en el comboBox
+        res =Conexiones.conexion.Consulta("SELECT idDistrito FROM distrito WHERE nombreDistrito='"+jComboBoxDistritoEmpresa.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                empresa.setIdDistrito(res.getInt("idDistrito"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        //Se insertan los valores en la tabla empresa
         int exito=0;
-        
-        //AQUI TAMBIEN PARA AGREGAR EMPRESA LO QUE FALTA ES LO DE LAS DIRECCIONES
-        
-        exito= procedimiento.AgregarEmpresa(txtRazonSocial.getText(),Integer.parseInt(txtcedulaJuridica.getText().toString()), 
-                Integer.parseInt(txttelefonoempresa.getText().toString()), 1, 1, 1051, "No disponible");
+        exito= procedimiento.AgregarEmpresa(empresa.getRazonSocial(),empresa.getCedulaJuridica(), empresa.getTelefono(),empresa.getIdProvincia(),
+                empresa.getIdCanton(),empresa.getIdDistrito(), jTextAreaSennasEmpresa.getText());
         if(exito>0){
             JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
                                           "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
