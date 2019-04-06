@@ -1281,43 +1281,33 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblMarca2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbltipo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblColores" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblprecio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblprecio1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMarca1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblprecio2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtdefPlaca" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxdefMarca" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                                          <Component id="txtdefAnno" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxdefEstilo" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="txtdefCapacidad" alignment="0" pref="143" max="32767" attributes="0"/>
-                                              <Component id="txtdefKilometraje" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="txtdefprecio" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jComboBoxdefColor" alignment="0" pref="143" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="btRegistrarVehiculo" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblMarca2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbltipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblColores" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblprecio1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMarca1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblprecio2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblprecio10" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="60" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtdefPlaca" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxdefMarca" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="txtdefAnno" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxdefEstilo" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="txtdefCapacidad" alignment="0" pref="143" max="32767" attributes="0"/>
+                                      <Component id="txtdefKilometraje" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jComboBoxdefColor" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="btIngresarImagen" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblprecio3" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblprecio4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1325,24 +1315,30 @@
                                           <Component id="lblprecio6" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblprecio7" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblprecio8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblprecio10" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblprecio9" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jComboBoxdefEstado" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="btIngresarImagen" alignment="0" pref="146" max="32767" attributes="0"/>
-                                          <Component id="jComboBoxdefSede" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jComboBoxdefSede" alignment="0" pref="146" max="32767" attributes="0"/>
                                           <Component id="txtdefMPG" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtdefVIN" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtdefNumeroPuertas" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtdefCapMaletas" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jComboBoxdefTransmision" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextCosto" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jTextField1" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtrutaVeh" min="-2" pref="284" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                              <Component id="btRegistrarVehiculo" min="-2" pref="224" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1370,7 +1366,7 @@
                                   <Component id="lblprecio5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtdefMPG" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lbltipo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jComboBoxdefEstilo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1385,48 +1381,28 @@
                                   <Component id="txtdefCapMaletas" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblprecio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="txtdefprecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblprecio8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxdefTransmision" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblprecio8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxdefTransmision" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblprecio1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtdefCapacidad" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblprecio1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtdefCapacidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxdefEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblprecio2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtdefKilometraje" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblprecio9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btIngresarImagen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblprecio10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblprecio9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextCosto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtdefKilometraje" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblprecio2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="btRegistrarVehiculo" min="-2" pref="85" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblprecio10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btIngresarImagen" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtrutaVeh" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="253" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="btRegistrarVehiculo" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace pref="230" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1509,13 +1485,6 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblprecio">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="txtdefprecio">
-                    </Component>
                     <Component class="javax.swing.JLabel" name="lblprecio1">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Capacidad"/>
@@ -1558,7 +1527,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblprecio9">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Estado"/>
+                        <Property name="text" type="java.lang.String" value="Costo"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtdefCapacidad">
@@ -1587,21 +1556,6 @@
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtdefCapMaletas">
-                    </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBoxdefEstado">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="jComboBoxdefTransmision">
                       <Properties>
@@ -1648,7 +1602,12 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRegistrarVehiculoActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField1">
+                    <Component class="javax.swing.JTextField" name="txtrutaVeh">
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextCosto">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCostoActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

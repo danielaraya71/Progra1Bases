@@ -203,5 +203,62 @@ public class procedimientos {
                 }
             }
             return resultado;
-    }
+        }
+        
+        public int AgregarVehiculo(int placa,int anioFabricacion,int idEstilo,int idColor,int idMarca,int idSede,int idTransmision,int idEstado,int capacidad,
+                int kilometraje,int puertas,int vin,int mpg,int costo_dia,int capacidadMaletas,FileInputStream fotoVehiculo){
+            Connection entrada= null;
+
+            String SSQL = "INSERT INTO vehiculo (placa, anioFabricacion, idEstilo, idColor, idMarca, idSede, idTransmision, idEstado, capacidad, kilometraje,"
+                    + "puertas, vin, mpg, costo_dia, capacidadMaletas, fotoVehiculo) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            int resultado = 0;
+
+            try {
+                entrada= conexion.establecerConexion();
+
+                PreparedStatement psql = entrada.prepareStatement(SSQL);
+                psql.setInt(1,placa);//
+                psql.setInt(2, anioFabricacion);
+                psql.setInt(3, idEstilo);
+                psql.setInt(4, idColor);
+                psql.setInt(5, idMarca);
+                psql.setInt(6, idSede);
+                psql.setInt(7, idTransmision);
+                psql.setInt(8, idEstado);
+                psql.setInt(9, capacidad);
+                psql.setInt(10, kilometraje);
+                psql.setInt(11, puertas);
+                psql.setInt(12, vin);
+                psql.setInt(13, mpg);
+                psql.setInt(14, costo_dia);
+                psql.setInt(15, capacidadMaletas);
+                psql.setBinaryStream(16, fotoVehiculo);
+
+                resultado = psql.executeUpdate();
+
+                psql.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n"
+                                             + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }finally{
+
+                try {
+
+                    if(entrada!=null){
+
+                        entrada.close();
+
+                    }
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n"
+                                             + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            return resultado;
+        }        
+        
 }

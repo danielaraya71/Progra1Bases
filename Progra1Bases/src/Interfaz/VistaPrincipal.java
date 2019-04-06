@@ -184,7 +184,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
            res =Conexiones.conexion.Consulta("select nombreColor from color");
            try {
                while (res.next()){
-                      jComboBoxdefColor.addItem(res.getString(" nombreColor"));
+                      jComboBoxdefColor.addItem(res.getString("nombreColor"));
                 }
            }   
                 catch (Exception e) {
@@ -197,9 +197,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
            res =Conexiones.conexion.Consulta("select nombreSede from sede");
            try {
                while (res.next()){
-                      jComboBoxdefSede.addItem(res.getString(" nombreSede"));
-                      jComboBoxSedeRecoReserva.addItem(res.getString(" nombreSede"));
-                      jComboBoxSedeEntregaReserva.addItem(res.getString(" nombreSede"));
+                      jComboBoxdefSede.addItem(res.getString("nombreSede"));
+                      jComboBoxSedeRecoReserva.addItem(res.getString("nombreSede"));
+                      jComboBoxSedeEntregaReserva.addItem(res.getString("nombreSede"));
                 }
            }   
                 catch (Exception e) {
@@ -216,7 +216,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
-         public void CargarEstado () {
+         /*public void CargarEstado () {
            jComboBoxdefEstado.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreEstado from estado");
            try {
@@ -226,7 +226,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
            }   
                 catch (Exception e) {
                 }
-        }
+        }*/
          // select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo 
          //from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo AND capacidad >= 300;
            public void CargarVehiculos () {
@@ -356,8 +356,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jComboBoxdefMarca = new javax.swing.JComboBox<String>();
         lblColores = new javax.swing.JLabel();
         jComboBoxdefColor = new javax.swing.JComboBox<String>();
-        lblprecio = new javax.swing.JLabel();
-        txtdefprecio = new javax.swing.JTextField();
         lblprecio1 = new javax.swing.JLabel();
         lblprecio2 = new javax.swing.JLabel();
         lblprecio3 = new javax.swing.JLabel();
@@ -374,12 +372,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         txtdefMPG = new javax.swing.JTextField();
         jComboBoxdefSede = new javax.swing.JComboBox<String>();
         txtdefCapMaletas = new javax.swing.JTextField();
-        jComboBoxdefEstado = new javax.swing.JComboBox<String>();
         jComboBoxdefTransmision = new javax.swing.JComboBox<String>();
         lblprecio10 = new javax.swing.JLabel();
         btIngresarImagen = new javax.swing.JButton();
         btRegistrarVehiculo = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtrutaVeh = new javax.swing.JTextField();
+        jTextCosto = new javax.swing.JTextField();
         jTabbedPaneReservas = new javax.swing.JTabbedPane();
         jPanelRealizarResserva = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -1127,8 +1125,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jComboBoxdefColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        lblprecio.setText("Precio");
-
         lblprecio1.setText("Capacidad");
 
         lblprecio2.setText("Kilometraje");
@@ -1145,11 +1141,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lblprecio8.setText("Transmisión");
 
-        lblprecio9.setText("Estado");
+        lblprecio9.setText("Costo");
 
         jComboBoxdefSede.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxdefEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBoxdefTransmision.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1172,41 +1166,41 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jTextCosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCostoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelIngresarVehiculosLayout = new javax.swing.GroupLayout(jPanelIngresarVehiculos);
         jPanelIngresarVehiculos.setLayout(jPanelIngresarVehiculosLayout);
         jPanelIngresarVehiculosLayout.setHorizontalGroup(
             jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelIngresarVehiculosLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMarca2)
+                    .addComponent(lblMarca)
+                    .addComponent(lbltipo)
+                    .addComponent(lblColores)
+                    .addComponent(lblprecio1)
+                    .addComponent(lblMarca1)
+                    .addComponent(lblprecio2)
+                    .addComponent(lblprecio10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtdefPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxdefMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdefAnno, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxdefEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtdefCapacidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                        .addComponent(txtdefKilometraje, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jComboBoxdefColor, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btIngresarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMarca2)
-                            .addComponent(lblMarca)
-                            .addComponent(lbltipo)
-                            .addComponent(lblColores)
-                            .addComponent(lblprecio)
-                            .addComponent(lblprecio1)
-                            .addComponent(lblMarca1)
-                            .addComponent(lblprecio2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdefPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxdefMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdefAnno, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxdefEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtdefCapacidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                .addComponent(txtdefKilometraje, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtdefprecio, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBoxdefColor, javax.swing.GroupLayout.Alignment.LEADING, 0, 143, Short.MAX_VALUE))))
-                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(btRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
+                        .addGap(112, 112, 112)
                         .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblprecio3)
                             .addComponent(lblprecio4)
@@ -1214,20 +1208,24 @@ public class VistaPrincipal extends javax.swing.JFrame {
                             .addComponent(lblprecio6)
                             .addComponent(lblprecio7)
                             .addComponent(lblprecio8)
-                            .addComponent(lblprecio10)
                             .addComponent(lblprecio9))
                         .addGap(27, 27, 27)
                         .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxdefEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btIngresarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(jComboBoxdefSede, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxdefSede, 0, 146, Short.MAX_VALUE)
                             .addComponent(txtdefMPG)
                             .addComponent(txtdefVIN)
                             .addComponent(txtdefNumeroPuertas)
                             .addComponent(txtdefCapMaletas)
-                            .addComponent(jComboBoxdefTransmision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jTextField1))
+                            .addComponent(jComboBoxdefTransmision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextCosto)))
+                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtrutaVeh, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(btRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelIngresarVehiculosLayout.setVerticalGroup(
             jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1250,7 +1248,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jComboBoxdefMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblprecio5)
                     .addComponent(txtdefMPG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltipo)
                     .addComponent(jComboBoxdefEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1263,37 +1261,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblprecio7)
                     .addComponent(txtdefCapMaletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblprecio)
-                    .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtdefprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblprecio8)
-                        .addComponent(jComboBoxdefTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
-                        .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblprecio1)
-                            .addComponent(txtdefCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxdefEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblprecio2)
-                            .addComponent(txtdefKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
-                        .addComponent(lblprecio9)
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btIngresarImagen)
-                            .addComponent(lblprecio10))))
-                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelIngresarVehiculosLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblprecio8)
+                    .addComponent(jComboBoxdefTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblprecio1)
+                    .addComponent(txtdefCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblprecio9)
+                    .addComponent(jTextCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdefKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblprecio2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelIngresarVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblprecio10)
+                    .addComponent(btIngresarImagen)
+                    .addComponent(txtrutaVeh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(btRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         jTabbedPaneNuevosRegistros.addTab("Ingresar Vehiculos", jPanelIngresarVehiculos);
@@ -1648,13 +1634,99 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        vehiculo vehiculo= new vehiculo();
     private void btRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarVehiculoActionPerformed
+        vehiculo.setPlaca(Integer.parseInt(txtdefPlaca.getText().toString()));
+        vehiculo.setAnioFabricacion(Integer.parseInt(txtdefAnno.getText().toString()));
+        vehiculo.setCapacidad(Integer.parseInt(txtdefCapacidad.getText().toString()));
+        vehiculo.setKilometraje(Integer.parseInt(txtdefKilometraje.getText().toString()));
+        vehiculo.setPuertas(Integer.parseInt(txtdefNumeroPuertas.getText().toString()));
+        vehiculo.setVin(Integer.parseInt(txtdefVIN.getText().toString()));
+        vehiculo.setMpg(Integer.parseInt(txtdefMPG.getText().toString()));
+        vehiculo.setCosto_dia(Integer.parseInt(jTextCosto.getText().toString()));
+        vehiculo.setCapacidadMaletas(Integer.parseInt(txtdefCapMaletas.getText().toString()));
+        vehiculo.setIdEstado(1);
         
+        res =Conexiones.conexion.Consulta("SELECT idMarca FROM marca WHERE nombreMarca='"+jComboBoxdefMarca.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdMarca(res.getInt("idMarca"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idEstilo FROM estilo WHERE nombreEstilo='"+jComboBoxdefEstilo.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdEstilo(res.getInt("idEstilo"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idColor FROM color WHERE nombreColor='"+jComboBoxdefColor.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdColor(res.getInt("idColor"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idSede FROM sede WHERE nombreSede='"+jComboBoxdefSede.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdSede(res.getInt("idSede"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idTransmision FROM transmision WHERE nombreTransmision='"+jComboBoxdefTransmision.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdTransmision(res.getInt("idTransmision"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        FileInputStream archivofoto;
+        try {
+            archivofoto = new FileInputStream(txtrutaVeh.getText());//Se lee la direccion de la imagen guardada en el campo de texto
+            vehiculo.setFotoVehiculo(archivofoto);
+            
+            //Se hace la insercion en la tabla vehiculo
+            int exito = 0;
+            exito= procedimiento.AgregarVehiculo(vehiculo.getPlaca(), vehiculo.getAnioFabricacion(), vehiculo.getIdEstilo(), vehiculo.getIdColor(),
+                    vehiculo.getIdMarca(), vehiculo.getIdSede(), vehiculo.getIdTransmision(), vehiculo.getIdEstado(), vehiculo.getCapacidad(),
+                    vehiculo.getKilometraje(), vehiculo.getPuertas(), vehiculo.getVin(), vehiculo.getMpg(), vehiculo.getCosto_dia(),
+                    vehiculo.getCapacidadMaletas(), vehiculo.getFotoVehiculo());
+            if(exito>0){
+                JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
+                                              "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
+                                             + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btRegistrarVehiculoActionPerformed
 
     private void btIngresarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarImagenActionPerformed
-        // TODO add your handling code here:
+        //Abriendo ventana para seleccionar imagen
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        JFileChooser foto= new JFileChooser();
+        foto.addChoosableFileFilter(filtro);
+        foto.setDialogTitle("Seleccionar archivo");
+        int ventana= foto.showOpenDialog(null);
+        //Se selecciona la imagen
+        if(ventana == JFileChooser.APPROVE_OPTION){
+            File file= foto.getSelectedFile();
+            txtrutaVeh.setText(file.toString());
+        }
     }//GEN-LAST:event_btIngresarImagenActionPerformed
         procedimientos procedimiento= new procedimientos();
         cliente cliente= new cliente();
@@ -1899,7 +1971,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         CargarColor ();
         CargarSede ();
         CargarTransmision ();
-        CargarEstado ();
+        //CargarEstado ();
         CargarTipoLicencia();
                 
     }//GEN-LAST:event_jButtonCargarDatosActionPerformed
@@ -1955,6 +2027,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void jComboBoxtipoMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxtipoMantenimientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxtipoMantenimientoActionPerformed
+
+    private void jTextCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCostoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2017,7 +2093,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxTipoFiltro;
     private javax.swing.JComboBox jComboBoxTipoLicencia;
     private javax.swing.JComboBox<String> jComboBoxdefColor;
-    private javax.swing.JComboBox<String> jComboBoxdefEstado;
     private javax.swing.JComboBox<String> jComboBoxdefEstilo;
     private javax.swing.JComboBox<String> jComboBoxdefMarca;
     private javax.swing.JComboBox<String> jComboBoxdefSede;
@@ -2090,7 +2165,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextAreaSennasEmpresa;
     private javax.swing.JTextArea jTextAreaSennasEmpresa1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextCosto;
     private javax.swing.JTextField jTextFieldCapFiltro;
     private javax.swing.JLabel jlblTipoLicencia;
     private javax.swing.JLabel lblColores;
@@ -2102,7 +2177,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblMarca4;
     private javax.swing.JLabel lblMarca5;
     private javax.swing.JLabel lblMontoMante;
-    private javax.swing.JLabel lblprecio;
     private javax.swing.JLabel lblprecio1;
     private javax.swing.JLabel lblprecio10;
     private javax.swing.JLabel lblprecio12;
@@ -2136,11 +2210,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtdefNumeroPuertas;
     private javax.swing.JTextField txtdefPlaca;
     private javax.swing.JTextField txtdefVIN;
-    private javax.swing.JTextField txtdefprecio;
     private javax.swing.JTextField txtfechaExpiracion;
     private javax.swing.JTextField txtnumeroLicencia;
     private javax.swing.JTextField txtprimerapellidocliente;
     private javax.swing.JTextField txtruta;
+    private javax.swing.JTextField txtrutaVeh;
     private javax.swing.JTextField txtsegundoapellidocliente;
     private javax.swing.JTextField txtsegundonombrecliente;
     private javax.swing.JTextField txttelefono;
