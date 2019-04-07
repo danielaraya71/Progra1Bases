@@ -6,6 +6,22 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+//Librerias que nos proporciona ITEXT
+//que son necesarias para crear el pdf
+
+
+import com.itextpdf.text.DocumentException;//se encarga
+//de capturar los posibles errores..
+
+import com.itextpdf.text.Paragraph;//hace referencia a
+//un parrafo,
+
+import com.itextpdf.text.pdf.PdfWriter; //contiene el
+//codigo necesario para crear un archivo PDF
+
+import com.itextpdf.text.pdf.PdfPTable; //contiene el
+//codigo necesario para tabular un archivo PDF
+
 
 public class procedimientos {
     

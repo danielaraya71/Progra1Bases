@@ -11,6 +11,12 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import com.itextpdf.text.Document;//contiene opciones para formato de nuestro documento como el tamaño de la pagina entre otras.
+import com.itextpdf.text.DocumentException; //se encarga de capturar los posibles errores..
+import com.itextpdf.text.pdf.PdfPTable; //contiene el codigo necesario para tabular un archivo PDF
+import com.itextpdf.text.pdf.PdfWriter; // //contiene el codigo necesario para crear un archivo PDF
+import java.awt.HeadlessException;
+
 
 public class VistaPrincipal extends javax.swing.JFrame {
     
@@ -281,9 +287,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextAreaSennasEmpresa1 = new javax.swing.JTextArea();
         jButtonCargarDatos = new javax.swing.JButton();
-        jComboBoxEscogerEmpresa = new javax.swing.JComboBox<String>();
-        jComboBoxEscogerPlaca = new javax.swing.JComboBox<String>();
-        jComboBoxtipoMantenimiento = new javax.swing.JComboBox<String>();
+        jComboBoxEscogerEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxEscogerPlaca = new javax.swing.JComboBox<>();
+        jComboBoxtipoMantenimiento = new javax.swing.JComboBox<>();
         lblMontoMante = new javax.swing.JLabel();
         txtMontoMantenimiento = new javax.swing.JTextField();
         jPanelNuevaEmpresa = new javax.swing.JPanel();
@@ -302,9 +308,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextAreaSennasEmpresa = new javax.swing.JTextArea();
         btRegistrarempresa = new javax.swing.JButton();
-        jComboBoxtProvinciaEmpresa = new javax.swing.JComboBox<String>();
-        jComboBoxCatonEmpresa = new javax.swing.JComboBox<String>();
-        jComboBoxDistritoEmpresa = new javax.swing.JComboBox<String>();
+        jComboBoxtProvinciaEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxCatonEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxDistritoEmpresa = new javax.swing.JComboBox<>();
         jButtonBuscarCantones = new javax.swing.JButton();
         jButtonBuscarDistritos = new javax.swing.JButton();
         jPanelNuevosClientes = new javax.swing.JPanel();
@@ -337,9 +343,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         btRegistrarcliente = new javax.swing.JButton();
-        jComboBoxtProvinciaCliente = new javax.swing.JComboBox<String>();
-        jComboBoxCatonCliente = new javax.swing.JComboBox<String>();
-        jComboBoxDistritoCliente = new javax.swing.JComboBox<String>();
+        jComboBoxtProvinciaCliente = new javax.swing.JComboBox<>();
+        jComboBoxCatonCliente = new javax.swing.JComboBox<>();
+        jComboBoxDistritoCliente = new javax.swing.JComboBox<>();
         txtruta = new javax.swing.JTextField();
         jButtonBuscarCantonesC = new javax.swing.JButton();
         jButtonBuscarDistritosC = new javax.swing.JButton();
@@ -352,10 +358,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lblMarca2 = new javax.swing.JLabel();
         txtdefAnno = new javax.swing.JTextField();
         lbltipo = new javax.swing.JLabel();
-        jComboBoxdefEstilo = new javax.swing.JComboBox<String>();
-        jComboBoxdefMarca = new javax.swing.JComboBox<String>();
+        jComboBoxdefEstilo = new javax.swing.JComboBox<>();
+        jComboBoxdefMarca = new javax.swing.JComboBox<>();
         lblColores = new javax.swing.JLabel();
-        jComboBoxdefColor = new javax.swing.JComboBox<String>();
+        jComboBoxdefColor = new javax.swing.JComboBox<>();
         lblprecio1 = new javax.swing.JLabel();
         lblprecio2 = new javax.swing.JLabel();
         lblprecio3 = new javax.swing.JLabel();
@@ -370,9 +376,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         txtdefNumeroPuertas = new javax.swing.JTextField();
         txtdefVIN = new javax.swing.JTextField();
         txtdefMPG = new javax.swing.JTextField();
-        jComboBoxdefSede = new javax.swing.JComboBox<String>();
+        jComboBoxdefSede = new javax.swing.JComboBox<>();
         txtdefCapMaletas = new javax.swing.JTextField();
-        jComboBoxdefTransmision = new javax.swing.JComboBox<String>();
+        jComboBoxdefTransmision = new javax.swing.JComboBox<>();
         lblprecio10 = new javax.swing.JLabel();
         btIngresarImagen = new javax.swing.JButton();
         btRegistrarVehiculo = new javax.swing.JButton();
@@ -389,8 +395,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jFormattedTextFieldFIR = new javax.swing.JFormattedTextField();
         jFormattedTextFieldFFR = new javax.swing.JFormattedTextField();
         jFormattedTextFieldFAR = new javax.swing.JFormattedTextField();
-        jComboBoxSedeRecoReserva = new javax.swing.JComboBox<String>();
-        jComboBoxSedeEntregaReserva = new javax.swing.JComboBox<String>();
+        jComboBoxSedeRecoReserva = new javax.swing.JComboBox<>();
+        jComboBoxSedeEntregaReserva = new javax.swing.JComboBox<>();
         jRadioButtonWIFI = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jRadioButtonASIS = new javax.swing.JRadioButton();
@@ -406,13 +412,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jComboBoxTipoFiltro = new javax.swing.JComboBox<String>();
+        jComboBoxTipoFiltro = new javax.swing.JComboBox<>();
         jTextFieldCapFiltro = new javax.swing.JTextField();
         btBuscarVehiculos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVehiculosDispo = new javax.swing.JTable();
         btRentarVehiculo = new javax.swing.JButton();
         jPanelConsultarReserva = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -454,16 +461,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxEscogerEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscogerEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEscogerEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEscogerEmpresaActionPerformed(evt);
             }
         });
 
-        jComboBoxEscogerPlaca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscogerPlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxtipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxtipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxtipoMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxtipoMantenimientoActionPerformed(evt);
@@ -641,11 +648,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxtProvinciaEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxtProvinciaEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxCatonEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCatonEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxDistritoEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDistritoEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonBuscarCantones.setText("Mostrar Cantones");
         jButtonBuscarCantones.addActionListener(new java.awt.event.ActionListener() {
@@ -872,16 +879,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxtProvinciaCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxtProvinciaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxtProvinciaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxtProvinciaClienteActionPerformed(evt);
             }
         });
 
-        jComboBoxCatonCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCatonCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxDistritoCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDistritoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonBuscarCantonesC.setText("Mostrar Cantones");
         jButtonBuscarCantonesC.addActionListener(new java.awt.event.ActionListener() {
@@ -1117,13 +1124,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lbltipo.setText("Estilo");
 
-        jComboBoxdefEstilo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefEstilo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxdefMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblColores.setText("Color");
 
-        jComboBoxdefColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblprecio1.setText("Capacidad");
 
@@ -1143,9 +1150,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lblprecio9.setText("Costo");
 
-        jComboBoxdefSede.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefSede.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxdefTransmision.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblprecio10.setText("Imagen");
 
@@ -1316,9 +1323,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jFormattedTextFieldFAR.setText("jFormattedTextField3");
 
-        jComboBoxSedeRecoReserva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSedeRecoReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxSedeEntregaReserva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSedeEntregaReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jRadioButtonWIFI.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonWIFI.setText("WIFI");
@@ -1470,7 +1477,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(240, 240, 240));
         jLabel35.setText("Capacidad");
 
-        jComboBoxTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btBuscarVehiculos.setBackground(new java.awt.Color(255, 153, 0));
         btBuscarVehiculos.setText("Buscar");
@@ -1595,15 +1602,28 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jTabbedPaneReservas.addTab("Realizar Reserva", jPanelRealizarResserva);
 
+        jButton1.setText("Generar reserva");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelConsultarReservaLayout = new javax.swing.GroupLayout(jPanelConsultarReserva);
         jPanelConsultarReserva.setLayout(jPanelConsultarReservaLayout);
         jPanelConsultarReservaLayout.setHorizontalGroup(
             jPanelConsultarReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGroup(jPanelConsultarReservaLayout.createSequentialGroup()
+                .addGap(218, 218, 218)
+                .addComponent(jButton1)
+                .addContainerGap(362, Short.MAX_VALUE))
         );
         jPanelConsultarReservaLayout.setVerticalGroup(
             jPanelConsultarReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGroup(jPanelConsultarReservaLayout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(jButton1)
+                .addContainerGap(423, Short.MAX_VALUE))
         );
 
         jTabbedPaneReservas.addTab("ConsultarReserva", jPanelConsultarReserva);
@@ -2032,6 +2052,44 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCostoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Document documento = new Document(); // se crea un nuevo documento
+        
+        
+        try {
+            String ruta = System.getProperty("users.home") ; //es la ruta que da acceso a la carpeta en la que se guarda el documento
+            PdfWriter.getInstance(documento,new FileOutputStream(ruta + "/Desktop/Informe de la Reserva.pdf")); //se indica que el pdf se guardara en el escritorio y el nombre bajo el que se guardara
+            documento.open(); 
+            
+            PdfPTable tabla = new PdfPTable(3);//se indica que se crea una table dentro del pdf *3 numero de columnas
+            tabla.addCell("Cliente"); //permite insertar texto en las celdas de la tabla
+            tabla.addCell("Sede de Recepcion");
+            tabla.addCell("Sede de devolucion");
+            tabla.addCell("Marca");
+            
+            try {
+                 res =Conexiones.conexion.Consulta("");
+                 
+                if(res.next()){
+                    
+                    do{
+                        tabla.addCell(res.getString(1));
+                        tabla.addCell(res.getString(2));
+                        tabla.addCell(res.getString(3));
+                    }while (res.next());
+                    
+                    documento.add(tabla);
+                }
+                
+            } catch (DocumentException | SQLException e) {
+                
+             documento.close();
+             JOptionPane.showMessageDialog(null, "Pdf reserva generado");
+            }
+        } catch (DocumentException | HeadlessException | FileNotFoundException e){
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2076,6 +2134,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btRegistrarcliente;
     private javax.swing.JButton btRegistrarempresa;
     private javax.swing.JButton btRentarVehiculo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarCantones;
     private javax.swing.JButton jButtonBuscarCantonesC;
     private javax.swing.JButton jButtonBuscarDistritos;
