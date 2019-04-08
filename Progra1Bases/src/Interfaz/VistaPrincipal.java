@@ -242,10 +242,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                DefaultTableModel modelo = (DefaultTableModel) jTableVehiculosDispo.getModel();
                modelo.setRowCount(0);
                String Estilo = (jComboBoxTipoFiltro .getSelectedItem().toString());
+               String Sede = (jComboBoxSedeRecoReserva .getSelectedItem().toString());
                int Capacidad = Integer.parseInt(this.jTextFieldCapFiltro.getText().toString());
-           res =Conexiones.conexion.Consulta("select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo "
-                   + "from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo AND nombreEstilo='"+Estilo+"' AND "
-                           + "capacidad >="+Capacidad);
+           res =Conexiones.conexion.Consulta ("select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo"
+                   + " from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo AND nombreEstilo='"+Estilo+"' AND "
+                   + "capacidad >="+Capacidad+" INNER JOIN sede on vehiculo.idSede=sede.idSede AND nombreSede='"+Sede+"'");  
            try {
                while (res.next()){
                      Vector vec = new Vector();
@@ -257,6 +258,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
                      vec.add(res.getString(6));
                      modelo.addRow(vec);
                      jTableVehiculosDispo.setModel(modelo);
+                }
+           }   
+                catch (Exception e) {
+                }
+        }
+        public void CargarClientes () {
+               DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+               modelo.setRowCount(0);
+           res =Conexiones.conexion.Consulta("select primerNombre , primerApellido, cedula, correo, telefono from cliente" );
+           try {
+               while (res.next()){
+                     Vector vec = new Vector();
+                     vec.add(res.getString(1));
+                     vec.add(res.getString(2));
+                     vec.add(res.getInt(3));
+                     vec.add(res.getString(4));
+                     vec.add(res.getInt(5));
+                     modelo.addRow(vec);
+                     jTableClientes.setModel(modelo);
                 }
            }   
                 catch (Exception e) {
@@ -410,7 +430,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableClientes = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -422,6 +442,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVehiculosDispo = new javax.swing.JTable();
         btRentarVehiculo = new javax.swing.JButton();
+        btRealizarReserva = new javax.swing.JButton();
+        btAbrirImagenVehi1 = new javax.swing.JButton();
         jPanelConsultarReserva = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jTabbedPaneEditar = new javax.swing.JTabbedPane();
@@ -1395,16 +1417,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(240, 240, 240));
         jLabel28.setText("Fecha actual");
 
-        jFormattedTextFieldFIR.setText("jFormattedTextField1");
+        jFormattedTextFieldFIR.setText("mes/dia/año");
         jFormattedTextFieldFIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldFIRActionPerformed(evt);
             }
         });
 
-        jFormattedTextFieldFFR.setText("jFormattedTextField2");
+        jFormattedTextFieldFFR.setText("mes/dia/año");
 
-        jFormattedTextFieldFAR.setText("jFormattedTextField3");
+        jFormattedTextFieldFAR.setText("mes/dia/año");
 
         jComboBoxSedeRecoReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1443,11 +1465,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel25)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
-                                .addGap(39, 39, 39)
-                                .addComponent(jFormattedTextFieldFAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jFormattedTextFieldFAR, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addGap(32, 32, 32)
@@ -1478,9 +1500,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addContainerGap(72, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFormattedTextFieldFFR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldFIR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFormattedTextFieldFIR, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextFieldFFR))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -1532,18 +1554,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Datos Cliente ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Apellido", "Cédula", "Correo", "Teléfono"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableClientes);
 
         jPanel4.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -1587,7 +1609,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jTextFieldCapFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(btBuscarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1627,6 +1649,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btRealizarReserva.setBackground(new java.awt.Color(255, 153, 0));
+        btRealizarReserva.setText("Realizar reserva");
+        btRealizarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRealizarReservaActionPerformed(evt);
+            }
+        });
+
+        btAbrirImagenVehi1.setBackground(new java.awt.Color(255, 153, 0));
+        btAbrirImagenVehi1.setText("Abrir Imagen del vehiculo");
+        btAbrirImagenVehi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbrirImagenVehi1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1636,17 +1674,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btRealizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1662,7 +1704,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGap(72, 72, 72)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btRealizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -2281,6 +2327,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         CargarTransmision ();
         //CargarEstado ();
         CargarTipoLicencia();
+        CargarClientes() ;
                 
     }//GEN-LAST:event_jButtonCargarDatosActionPerformed
 
@@ -2306,6 +2353,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void btBuscarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarVehiculosActionPerformed
        CargarVehiculos ();
+        CargarClientes ();
     }//GEN-LAST:event_btBuscarVehiculosActionPerformed
 
     private void btRentarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRentarVehiculoActionPerformed
@@ -2396,6 +2444,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCosto1ActionPerformed
 
+    private void btRealizarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRealizarReservaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btRealizarReservaActionPerformed
+
+    private void btAbrirImagenVehi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirImagenVehi1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAbrirImagenVehi1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2432,10 +2488,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAbrirImagenVehi1;
     private javax.swing.JButton btBuscarVehiculos;
     private javax.swing.JButton btImagenLicencia;
     private javax.swing.JButton btIngresarImagen;
     private javax.swing.JButton btIngresarImagen1;
+    private javax.swing.JButton btRealizarReserva;
     private javax.swing.JButton btRegistrarNuevoMantenimiento;
     private javax.swing.JButton btRegistrarVehiculo;
     private javax.swing.JButton btRegistrarVehiculo1;
@@ -2540,7 +2598,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPaneNuevosRegistros;
     private javax.swing.JTabbedPane jTabbedPaneReservas;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableClientes;
     private javax.swing.JTable jTableVehiculosDispo;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextAreaSennasEmpresa;
