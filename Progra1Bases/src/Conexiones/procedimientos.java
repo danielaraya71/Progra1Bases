@@ -79,7 +79,7 @@ public class procedimientos {
             }
             return resultado;
     }
-        
+        //Metodo que agrega licencia
         public int AgregarLicencia(int numeroLicencia,int cedula,int idTipoLicencia,String fEmision,String fExpiracion,FileInputStream fotoLicencia){
             Connection entrada= null;
             
@@ -174,7 +174,8 @@ public class procedimientos {
             }
             return resultado;
         }
-
+        
+        //Metodo que realiza la insercion de los datos en la base de datos
         public int AgregarMantenimiento(int placa,int idServicio,int cedulaJuridica,int idTipo,String fInicio,String fFinal,int monto,String detalle){
             Connection entrada= null;
 
@@ -221,6 +222,7 @@ public class procedimientos {
             return resultado;
         }
         
+        //Metodo que realiza la insercion de vehiculos en base de datosz
         public int AgregarVehiculo(int placa,int anioFabricacion,int idEstilo,int idColor,int idMarca,int idSede,int idTransmision,int idEstado,int capacidad,
                 int kilometraje,int puertas,int vin,int mpg,int costo_dia,int capacidadMaletas,FileInputStream fotoVehiculo){
             Connection entrada= null;
@@ -277,4 +279,57 @@ public class procedimientos {
             return resultado;
         }        
         
+        //Metodo que inserta reserva en base de datos
+        public int AgregarReserva(int idReserva,int cedula,int placa,int idSedeRecogida,int idSedeEntrega,String fInicio, String fFin,String fSolicitud,
+                String usuario,int idWifi,int idAsistencia,int idGPS,int idAsientoNinio,int idDanio){
+            Connection entrada= null;
+
+            String SSQL = "INSERT INTO reserva (idReserva,cedula,placa,idSedeRecogida,idSedeEntrega,fInicio,fFin,fSolicitud,usuario,idWifi,idAsistencia,"
+                    + "idGPS,idAsientoNinio,idDanio) "+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            int resultado = 0;
+
+            try {
+                entrada= conexion.establecerConexion();
+
+                PreparedStatement psql = entrada.prepareStatement(SSQL);
+                psql.setInt(1, idReserva);//
+                psql.setInt(2, cedula);
+                psql.setInt(3, placa);
+                psql.setInt(4, idSedeRecogida);
+                psql.setInt(5, idSedeEntrega);
+                psql.setString(6, fInicio);
+                psql.setString(7, fFin);
+                psql.setString(8, fSolicitud);
+                psql.setString(9, usuario);
+                psql.setInt(10, idWifi);
+                psql.setInt(11, idAsistencia);
+                psql.setInt(12, idGPS);
+                psql.setInt(13, idAsientoNinio);
+                psql.setInt(14, idDanio);
+
+                resultado = psql.executeUpdate();
+
+                psql.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n"
+                                             + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }finally{
+
+                try {
+
+                    if(entrada!=null){
+
+                        entrada.close();
+
+                    }
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n"
+                                             + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            return resultado;
+        }       
 }

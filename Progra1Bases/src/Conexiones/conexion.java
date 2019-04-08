@@ -20,7 +20,7 @@ public class conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         }
         catch (ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"No se pudo realizar conexion, revisar drive" + e.getMessage(),
+            JOptionPane.showMessageDialog(null,"No se pudo realizar conexion, revisar drive " + e.getMessage(),
             "Error de conexion",JOptionPane.ERROR_MESSAGE);
         }
         try{
