@@ -54,10 +54,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
        
         public void CargarPlaca () {
            jComboBoxEscogerPlaca.removeAllItems();
+           jComboBoxEscogerPlaca1.removeAllItems();
            res =Conexiones.conexion.Consulta("select placa from vehiculo");
            try {
                while (res.next()){
                     jComboBoxEscogerPlaca.addItem(res.getString("placa"));
+                    jComboBoxEscogerPlaca1.addItem(res.getString("placa"));
                 }
            }   
                 catch (Exception e) {
@@ -164,10 +166,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
           
           public void CargarMarca () {
            jComboBoxdefMarca.removeAllItems();
+           jComboBoxdefMarca1.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreMarca from marca");
            try {
                while (res.next()){
                     jComboBoxdefMarca.addItem(res.getString("nombreMarca"));
+                    jComboBoxdefMarca1.addItem(res.getString("nombreMarca"));
                 }
            }   
                 catch (Exception e) {
@@ -177,11 +181,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
           public void CargarEstilo () {
            jComboBoxdefEstilo.removeAllItems();
            jComboBoxTipoFiltro.removeAllItems();
+           jComboBoxdefEstilo1.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreEstilo from estilo");
            try {
                while (res.next()){
                     jComboBoxdefEstilo.addItem(res.getString("nombreEstilo"));
                     jComboBoxTipoFiltro.addItem(res.getString("nombreEstilo"));
+                    jComboBoxdefEstilo1.addItem(res.getString("nombreEstilo"));
                 }
            }   
                 catch (Exception e) {
@@ -190,10 +196,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
           
           public void CargarColor () {
            jComboBoxdefColor.removeAllItems();
+           jComboBoxdefColor1.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreColor from color");
            try {
                while (res.next()){
                       jComboBoxdefColor.addItem(res.getString("nombreColor"));
+                      jComboBoxdefColor1.addItem(res.getString("nombreColor"));
                 }
            }   
                 catch (Exception e) {
@@ -202,12 +210,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
           
         public void CargarSede () {
            jComboBoxdefSede.removeAllItems();
+           jComboBoxdefSede1.removeAllItems();
            jComboBoxSedeRecoReserva.removeAllItems();
            jComboBoxSedeEntregaReserva.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreSede from sede");
            try {
                while (res.next()){
                       jComboBoxdefSede.addItem(res.getString("nombreSede"));
+                      jComboBoxdefSede1.addItem(res.getString("nombreSede"));
                       jComboBoxSedeRecoReserva.addItem(res.getString("nombreSede"));
                       jComboBoxSedeEntregaReserva.addItem(res.getString("nombreSede"));
                 }
@@ -218,28 +228,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
          public void CargarTransmision () {
            jComboBoxdefTransmision.removeAllItems();
+           jComboBoxdefTransmision1.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreTransmision from transmision");
            try {
                while (res.next()){
                       jComboBoxdefTransmision.addItem(res.getString("nombreTransmision"));
+                      jComboBoxdefTransmision1.addItem(res.getString("nombreTransmision"));
                 }
            }   
                 catch (Exception e) {
                 }
         }
-         /*public void CargarEstado () {
-           jComboBoxdefEstado.removeAllItems();
-           res =Conexiones.conexion.Consulta("select nombreEstado from estado");
-           try {
-               while (res.next()){
-                     jComboBoxdefEstado.addItem(res.getString("nombreEstado"));
-                }
-           }   
-                catch (Exception e) {
-                }
-        }*/
-         // select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo 
-         //from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo AND capacidad >= 300;
+
            public void CargarVehiculos () {
                DefaultTableModel modelo = (DefaultTableModel) jTableVehiculosDispo.getModel();
                modelo.setRowCount(0);
@@ -1817,7 +1817,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         btRegistrarVehiculo1.setBackground(new java.awt.Color(255, 153, 0));
-        btRegistrarVehiculo1.setText("Registrar vehiculo");
+        btRegistrarVehiculo1.setText("Modificar vehículo");
         btRegistrarVehiculo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarVehiculo1ActionPerformed(evt);
@@ -2330,7 +2330,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         CargarColor ();
         CargarSede ();
         CargarTransmision ();
-        //CargarEstado ();
         CargarTipoLicencia();
         CargarClientes() ;
                 
@@ -2438,11 +2437,104 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGenerarReservaActionPerformed
 
     private void btIngresarImagen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarImagen1ActionPerformed
-        // TODO add your handling code here:
+        //Abriendo ventana para seleccionar imagen
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        JFileChooser foto= new JFileChooser();
+        foto.addChoosableFileFilter(filtro);
+        foto.setDialogTitle("Seleccionar archivo");
+        int ventana= foto.showOpenDialog(null);
+        //Se selecciona la imagen
+        if(ventana == JFileChooser.APPROVE_OPTION){
+            File file= foto.getSelectedFile();
+            txtrutaVeh1.setText(file.toString());
+        }        
     }//GEN-LAST:event_btIngresarImagen1ActionPerformed
 
     private void btRegistrarVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarVehiculo1ActionPerformed
-        // TODO add your handling code here:
+        vehiculo.setAnioFabricacion(Integer.parseInt(txtdefAnno1.getText().toString()));
+        vehiculo.setCapacidad(Integer.parseInt(txtdefCapacidad1.getText().toString()));
+        vehiculo.setKilometraje(Integer.parseInt(txtdefKilometraje1.getText().toString()));
+        vehiculo.setPuertas(Integer.parseInt(txtdefNumeroPuertas1.getText().toString()));
+        vehiculo.setVin(Integer.parseInt(txtdefVIN1.getText().toString()));
+        vehiculo.setMpg(Integer.parseInt(txtdefMPG1.getText().toString()));
+        vehiculo.setCosto_dia(Integer.parseInt(jTextCosto1.getText().toString()));
+        vehiculo.setCapacidadMaletas(Integer.parseInt(txtdefCapMaletas1.getText().toString()));
+        vehiculo.setIdEstado(1);
+        
+        res =Conexiones.conexion.Consulta("SELECT placa FROM vehiculo WHERE placa='"+jComboBoxEscogerPlaca1.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setPlaca(res.getInt("placa"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idMarca FROM marca WHERE nombreMarca='"+jComboBoxdefMarca1.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdMarca(res.getInt("idMarca"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idEstilo FROM estilo WHERE nombreEstilo='"+jComboBoxdefEstilo1.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdEstilo(res.getInt("idEstilo"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idColor FROM color WHERE nombreColor='"+jComboBoxdefColor1.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdColor(res.getInt("idColor"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idSede FROM sede WHERE nombreSede='"+jComboBoxdefSede1.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdSede(res.getInt("idSede"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        res =Conexiones.conexion.Consulta("SELECT idTransmision FROM transmision WHERE nombreTransmision='"+jComboBoxdefTransmision1.getSelectedItem().toString()+"'");
+        try {
+            while(res.next()){
+                vehiculo.setIdTransmision(res.getInt("idTransmision"));
+            }
+        }   
+        catch (Exception e) {
+        }
+        
+        FileInputStream archivofoto;
+        try {
+            archivofoto = new FileInputStream(txtrutaVeh1.getText());//Se lee la direccion de la imagen guardada en el campo de texto
+            vehiculo.setFotoVehiculo(archivofoto);
+            int exito=0;
+            exito= procedimiento.ModificarVehiculo(vehiculo.getPlaca(), vehiculo.getAnioFabricacion(), vehiculo.getIdEstilo(), vehiculo.getIdColor(),
+                    vehiculo.getIdMarca(), vehiculo.getIdSede(), vehiculo.getIdTransmision(), vehiculo.getIdEstado(), vehiculo.getCapacidad(),
+                    vehiculo.getKilometraje(), vehiculo.getPuertas(), vehiculo.getVin(), vehiculo.getMpg(), vehiculo.getCosto_dia(),
+                    vehiculo.getCapacidadMaletas(), vehiculo.getFotoVehiculo());
+            if(exito>0){
+                JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
+                                              "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
+                                             + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE); 
+            }
+         } catch (FileNotFoundException ex) {
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }//GEN-LAST:event_btRegistrarVehiculo1ActionPerformed
 
     private void jTextCosto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCosto1ActionPerformed

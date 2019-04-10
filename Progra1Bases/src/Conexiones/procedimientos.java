@@ -378,4 +378,45 @@ public class procedimientos {
             }
             return resultado;
     }
+        
+        public int ModificarVehiculo(int placa,int anioFabricacion,int idEstilo,int idColor,int idMarca,int idSede,int idTransmision,int idEstado,int capacidad,
+                int kilometraje,int puertas,int vin,int mpg,int costo_dia,int capacidadMaletas,FileInputStream fotoVehiculo){
+            Connection entrada= null;
+
+            String SSQL = "UPDATE vehiculo set anioFabricacion="+anioFabricacion+", idEstilo="+idEstilo+", idColor="+idColor+", idMarca="+idMarca
+                    +", idSede="+idSede+", idTransmision="+idTransmision+", idEstado="+idEstado+", capacidad="+capacidad+", kilometraje="
+                    +kilometraje+", puertas="+puertas+", vin="+vin+", mpg="+mpg+", costo_dia="+costo_dia+", capacidadMaletas="+capacidadMaletas+
+                    ", fotoVehiculo='"+fotoVehiculo+"' where placa="+placa;
+
+            int resultado = 0;
+
+            try {
+                entrada= conexion.establecerConexion();
+
+                PreparedStatement psql = entrada.prepareStatement(SSQL);
+
+                resultado = psql.executeUpdate();
+
+                psql.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n"
+                                             + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }finally{
+
+                try {
+
+                    if(entrada!=null){
+
+                        entrada.close();
+
+                    }
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n"
+                                             + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            return resultado;
+        }        
 }
