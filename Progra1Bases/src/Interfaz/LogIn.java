@@ -1,5 +1,6 @@
 package Interfaz;
 
+import static Interfaz.VistaPrincipal.res;
 import javax.swing.JOptionPane;
 
 /**
@@ -238,9 +239,28 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_txtusernameActionPerformed
 
     private void btIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresar1ActionPerformed
-        // TODO add your handling code here:
-        VistaPrincipal ventana = new VistaPrincipal();
-        ventana.setVisible(true); 
+           res =Conexiones.conexion.Consulta("select usuario from operador where usuario='"+txtusername1.getText()+"'");
+           
+           try {
+               //Se verifica que el usuario exista y que la contrasena sea correcta
+               if (res.next()){
+                   res=Conexiones.conexion.Consulta("select contrasenia from operador where contrasenia='"+txtpassword1.getText()+"'");
+                   if(res.next()){
+                       VistaPrincipal ventana = new VistaPrincipal();
+                       ventana.setVisible(true); 
+                   }
+                   else{
+                       JOptionPane.showMessageDialog(null,"Usuario ó contraseña incorrecta","Error en login", JOptionPane.ERROR_MESSAGE);                       
+                   }
+
+                }
+               //Si usuario o contrasena son incorrectas, o no existen, muestra error
+               else{
+                   JOptionPane.showMessageDialog(null,"Usuario ó contraseña incorrecta","Error en login", JOptionPane.ERROR_MESSAGE);
+                }
+           }
+           catch (Exception e){
+                }
         
     }//GEN-LAST:event_btIngresar1ActionPerformed
 

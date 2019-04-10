@@ -2,6 +2,7 @@ package Interfaz;
 
 import Conexiones.*; 
 import static Conexiones.conexion.Consulta;
+import Extras.SendEmail;
 import Objetos.*;
 import java.io.*;
 import java.sql.*;
@@ -2456,6 +2457,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btAbrirImagenVehi1ActionPerformed
             Operador operador= new Operador();
+            SendEmail correo= new SendEmail();
     private void jButtonEviarCorreoOperadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEviarCorreoOperadorActionPerformed
            res =Conexiones.conexion.Consulta("select usuario from operador where usuario='"+txtCorreoUsuario.getText()+"'");
            int contador=0;
@@ -2463,6 +2465,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                //Se verifica que el usuario no exista en la base de datos
                if (res.next()){
                    contador++;
+                   JOptionPane.showMessageDialog(null,"Ya existe este usuario", "Usuario", JOptionPane.INFORMATION_MESSAGE);
                 }
                //Creacion de la contrasena aleatoria
                 if(contador==0){
@@ -2496,6 +2499,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
                        JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
                                                      + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE); 
                    }
+                   
+                   String mensaje= "Saludos! \n \nSu usuario es: "+operador.getUsuario()+"\nSu contrasena es: "+operador.getContrasenia();
+                   correo.SendEmail(operador.getUsuario(),mensaje,"Datos operador");
                }
            }   
             catch (Exception e) {
