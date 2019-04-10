@@ -331,5 +331,51 @@ public class procedimientos {
                 }
             }
             return resultado;
-        }       
+        }  
+        
+    //Metodo que llama a procedimiento para agregar operador a base de datos
+        public int AgregarOperador(String usuario,String contrasenia){
+            Connection entrada= null;
+            
+            String SSQL = "INSERT INTO operador (usuario, contrasenia) "
+            + "VALUES (?, ?)";
+            
+            int resultado = 0;
+            
+            try {
+    
+                entrada= conexion.establecerConexion();
+
+                PreparedStatement psql = entrada.prepareStatement(SSQL);
+                psql.setString(1,usuario);
+                psql.setString(2,contrasenia);             
+
+                resultado = psql.executeUpdate();
+
+                psql.close();
+
+            } catch (SQLException e) {
+
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n"
+                                             + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+
+            }finally{
+
+                try {
+
+                    if(entrada!=null){
+
+                        entrada.close();
+
+                    }
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n"
+                                             + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+            return resultado;
+    }
 }
