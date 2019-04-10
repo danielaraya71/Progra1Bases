@@ -12,22 +12,30 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import com.itextpdf.text.Document;//contiene opciones para formato de nuestro documento como el tamaño de la pagina entre otras.
+//import com.itextpdf.text.Document;//contiene opciones para formato de nuestro documento como el tamaño de la pagina entre otras.
 import com.itextpdf.text.DocumentException; //se encarga de capturar los posibles errores..
 import com.itextpdf.text.pdf.PdfPTable; //contiene el codigo necesario para tabular un archivo PDF
 import com.itextpdf.text.pdf.PdfWriter; // //contiene el codigo necesario para crear un archivo PDF
 import java.awt.HeadlessException;
 import java.util.Random;
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+
 
 
 public class VistaPrincipal extends javax.swing.JFrame {
     
     
     static ResultSet res;
-
+    //res es la variable con la que se van a trabajar las consultas, sirve para poder manipular los datos 
+    
     public VistaPrincipal() {
         initComponents();
     }
+    //metodo para cargar los tipos de licencias existentes, en este caso B1,B2 Y B3
         public void CargarTipoLicencia () {
            jComboBoxTipoLicencia.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreTipoLicencia from tipoLicencia");
@@ -39,7 +47,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
-              
+     //metodo que carga las empresas que estan en la base de datos y las empresas  
+        // y aquellas que fueron agregadas a la base desde la interfaz
        public void CargarEmpresa () {
            jComboBoxEscogerEmpresa.removeAllItems();
            res =Conexiones.conexion.Consulta("select razonSocial from empresa");
@@ -51,21 +60,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
-       
+       // se cargan las placas de los vehiculo que estan registrados en la base de dtos
+       //y de aquellos vehiculos que se agregan desde interfaz
         public void CargarPlaca () {
            jComboBoxEscogerPlaca.removeAllItems();
            jComboBoxEscogerPlaca1.removeAllItems();
            res =Conexiones.conexion.Consulta("select placa from vehiculo");
            try {
                while (res.next()){
-                    jComboBoxEscogerPlaca.addItem(res.getString("placa"));
+                    jComboBoxEscogerPlaca.addItem(res.getString("placa")); // se agregan a estos combos
                     jComboBoxEscogerPlaca1.addItem(res.getString("placa"));
                 }
            }   
                 catch (Exception e) {
                 }
         }
-        
+        //metodo que carga los servicios de mantenimiento disponibles para los vehiculos 
+        // cuando se registra un mantenimiento para un vehiculo solo se muestran aquellos que han sido previamente registrados en la base
          public void CargarMantenimiento () {
            jComboBoxtipoMantenimiento.removeAllItems();
            res =Conexiones.conexion.Consulta("select nombreTipo from tipo");
@@ -77,7 +88,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
            }
-         
+         //Metodo que carga solo las 7 provincias
           public void CargarProvincia () {
            jComboBoxtProvinciaEmpresa.removeAllItems();
            jComboBoxtProvinciaCliente.removeAllItems();
@@ -163,7 +174,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                    }
             }
-          
+          // metodo que carga las posibles marcas que los autos pueden tomar al ser registrados
           public void CargarMarca () {
            jComboBoxdefMarca.removeAllItems();
            jComboBoxdefMarca1.removeAllItems();
@@ -177,7 +188,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
-          
+          // cuando se registra un nuevo vehiculo se le asigana un estilo de los que ya se encuentra predefinidos
           public void CargarEstilo () {
            jComboBoxdefEstilo.removeAllItems();
            jComboBoxTipoFiltro.removeAllItems();
@@ -193,7 +204,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
-          
+          // cuando se registra un nuevo vehiculo se le asigana un color de los que ya se encuentra predefinidos
           public void CargarColor () {
            jComboBoxdefColor.removeAllItems();
            jComboBoxdefColor1.removeAllItems();
@@ -207,7 +218,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
-          
+          // cuando se registra un nuevo vehiculo se le asigana una sede de los que ya se encuentra predefinidos
         public void CargarSede () {
            jComboBoxdefSede.removeAllItems();
            jComboBoxdefSede1.removeAllItems();
@@ -225,7 +236,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }  
-        
+        // cuando se registra un nuevo vehiculo se le asigana una transmision ya sea manual o automatica
          public void CargarTransmision () {
            jComboBoxdefTransmision.removeAllItems();
            jComboBoxdefTransmision1.removeAllItems();
@@ -239,7 +250,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
-
+// Metodo que carga todos los vehiculos que cumplen con los filtros de capacidad, sede de recogida y estilo
            public void CargarVehiculos () {
                DefaultTableModel modelo = (DefaultTableModel) jTableVehiculosDispo.getModel();
                modelo.setRowCount(0);
@@ -265,6 +276,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
+           //metodo que carga todos los clientes que se encuentran inscritos en la base de datos
         public void CargarClientes () {
                DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
                modelo.setRowCount(0);
@@ -284,6 +296,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 catch (Exception e) {
                 }
         }
+        
+        
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -444,13 +458,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVehiculosDispo = new javax.swing.JTable();
         btRentarVehiculo = new javax.swing.JButton();
-        btRealizarReserva = new javax.swing.JButton();
+        btRealizarImpresionyPDF = new javax.swing.JButton();
         btAbrirImagenVehi1 = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
         jTextFieldPlacaEscogida = new javax.swing.JTextField();
         jButtonResumen = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaResumen = new javax.swing.JTextArea();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabelTipoCambio = new javax.swing.JLabel();
         jPanelConsultarReserva = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jTabbedPaneEditar = new javax.swing.JTabbedPane();
@@ -1659,11 +1676,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btRealizarReserva.setBackground(new java.awt.Color(255, 153, 0));
-        btRealizarReserva.setText("Imprimir y generar PDF");
-        btRealizarReserva.addActionListener(new java.awt.event.ActionListener() {
+        btRealizarImpresionyPDF.setBackground(new java.awt.Color(255, 153, 0));
+        btRealizarImpresionyPDF.setText("Imprimir y generar PDF");
+        btRealizarImpresionyPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRealizarReservaActionPerformed(evt);
+                btRealizarImpresionyPDFActionPerformed(evt);
             }
         });
 
@@ -1691,6 +1708,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jTextAreaResumen.setRows(5);
         jScrollPane3.setViewportView(jTextAreaResumen);
 
+        jLabel37.setText("Placa");
+
+        jLabel38.setText("Tipo de Cambio");
+
+        jLabelTipoCambio.setText("jLabel39");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1702,7 +1725,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btRealizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btRealizarImpresionyPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel38)
+                                .addGap(55, 55, 55)
+                                .addComponent(jLabelTipoCambio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -1717,19 +1744,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel37)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTextFieldPlacaEscogida, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(52, 52, 52)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addGap(51, 51, 51)
-                                                .addComponent(jLabel36))
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addGap(54, 54, 54)
-                                                .addComponent(jButtonResumen)))
-                                        .addGap(56, 56, 56)))
+                                            .addComponent(jButtonResumen)
+                                            .addComponent(jLabel36))
+                                        .addGap(57, 57, 57)))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -1748,18 +1774,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel36)
-                        .addGap(16, 16, 16)
-                        .addComponent(jTextFieldPlacaEscogida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldPlacaEscogida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel37))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonResumen))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btRealizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btRealizarImpresionyPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel38)
+                    .addComponent(jLabelTipoCambio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -2042,6 +2072,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         vehiculo vehiculo= new vehiculo();
     private void btRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarVehiculoActionPerformed
+       //esta accion se realiza para cuando se quiere agregar un nuevo vehiculo a la base
+       //primero se inicializan todos los setters
         vehiculo.setPlaca(Integer.parseInt(txtdefPlaca.getText().toString()));
         vehiculo.setAnioFabricacion(Integer.parseInt(txtdefAnno.getText().toString()));
         vehiculo.setCapacidad(Integer.parseInt(txtdefCapacidad.getText().toString()));
@@ -2053,6 +2085,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         vehiculo.setCapacidadMaletas(Integer.parseInt(txtdefCapMaletas.getText().toString()));
         vehiculo.setIdEstado(1);
         
+        //se realizan todas las consultas necesarias 
+        //pues ciertos valores solo pueden ser tomados si estan predefinidos en la base de datos
+        //por ello se opta por utilizar combo box y no campos de texto
         res =Conexiones.conexion.Consulta("SELECT idMarca FROM marca WHERE nombreMarca='"+jComboBoxdefMarca.getSelectedItem().toString()+"'");
         try {
             while(res.next()){
@@ -2103,7 +2138,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             archivofoto = new FileInputStream(txtrutaVeh.getText());//Se lee la direccion de la imagen guardada en el campo de texto
             vehiculo.setFotoVehiculo(archivofoto);
             
-            //Se hace la insercion en la tabla vehiculo
+            //Se hace la insercion en la tabla vehiculo en POO
             int exito = 0;
             exito= procedimiento.AgregarVehiculo(vehiculo.getPlaca(), vehiculo.getAnioFabricacion(), vehiculo.getIdEstilo(), vehiculo.getIdColor(),
                     vehiculo.getIdMarca(), vehiculo.getIdSede(), vehiculo.getIdTransmision(), vehiculo.getIdEstado(), vehiculo.getCapacidad(),
@@ -2123,7 +2158,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void btIngresarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarImagenActionPerformed
         //Abriendo ventana para seleccionar imagen
-        FileNameExtensionFilter filtro= new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif"); // os tipos de datos que puede tomar dicho archivo 
         JFileChooser foto= new JFileChooser();
         foto.addChoosableFileFilter(filtro);
         foto.setDialogTitle("Seleccionar archivo");
@@ -2147,7 +2182,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         cliente.setTelefonoCliente(Integer.parseInt(txttelefono.getText().toString()));
         
         //Se asigna el id de la provincia de acuerdo a lo que este en el comboBox
-        
+         //se realizan todas las consultas necesarias 
+        //pues ciertos valores solo pueden ser tomados si estan predefinidos en la base de datos
+        //por ello se opta por utilizar combo box y no campos de texto
         res =Conexiones.conexion.Consulta("SELECT idProvincia FROM provincia WHERE nombreProvincia='"+jComboBoxtProvinciaCliente.getSelectedItem().toString()+"'");
         try {
             while(res.next()){
@@ -2158,6 +2195,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
         
         //Se asigna el id del canton de acuerdo a lo que este en el comboBox
+        //tanto los cantones como distritos se encuentran filtrados en la base de datos,
+        //esto quiere decir que solo se pueden escoger cantones que pertenezcan a x provincia
+        // y dristritos que pertenezcan a x canton
         res =Conexiones.conexion.Consulta("SELECT idCanton FROM canton WHERE nombre_canton='"+jComboBoxCatonCliente.getSelectedItem().toString()+"'");
         try {
             while(res.next()){
@@ -2277,6 +2317,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         empresa.setSenias(jTextAreaSennasEmpresa.getText());
         
         //Se asigna el id de la provincia de acuerdo a lo que este en el comboBox
+         //se realizan todas las consultas necesarias 
+        //pues ciertos valores solo pueden ser tomados si estan predefinidos en la base de datos
+        //por ello se opta por utilizar combo box y no campos de texto
         res =Conexiones.conexion.Consulta("SELECT idProvincia FROM provincia WHERE nombreProvincia='"+jComboBoxtProvinciaEmpresa.getSelectedItem().toString()+"'");
         try {
             while(res.next()){
@@ -2285,7 +2328,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }   
         catch (Exception e) {
         }
-        
+         //tanto los cantones como distritos se encuentran filtrados en la base de datos,
+        //esto quiere decir que solo se pueden escoger cantones que pertenezcan a x provincia
+        // y dristritos que pertenezcan a x canton
         //Se asigna el id del canton de acuerdo a lo que este en el comboBox
         res =Conexiones.conexion.Consulta("SELECT idCanton FROM canton WHERE nombre_canton='"+jComboBoxCatonEmpresa.getSelectedItem().toString()+"'");
         try {
@@ -2330,6 +2375,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btRegistrarNuevoMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarNuevoMantenimientoActionPerformed
         
         //Asocia valor del comboBox de tipo del mantenimiento con su respectivo id
+          //se realizan todas las consultas necesarias 
+        //pues ciertos valores solo pueden ser tomados si estan predefinidos en la base de datos
+        //por ello se opta por utilizar combo box y no campos de texto
         res =Conexiones.conexion.Consulta("SELECT idTipo FROM tipo WHERE nombreTipo='"+jComboBoxtipoMantenimiento.getSelectedItem().toString()+"'");
         int idTipo = 0;
         try {
@@ -2366,8 +2414,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                          + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE); 
         }
     }//GEN-LAST:event_btRegistrarNuevoMantenimientoActionPerformed
-
+ Conversion Conv = new Conversion();
     private void jButtonCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarDatosActionPerformed
+       //cada vez que se agregue una nueva tupla en una entidad se debe recurrir al boton de 
+       //"cargar los datos", pues este vuelve a cargar todos los datos y despiega tambien aquellos que acaban de ser agregados
+       // web scraping
+       try {
+            System.out.println(Conv.Conversion());
+            jLabelTipoCambio.setText(Conv.Conversion());
+        } catch (IOException ex) {
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //llamada a los diversos metodos 
         CargarEmpresa ();
         CargarMantenimiento ();
         CargarPlaca ();
@@ -2403,7 +2461,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonWIFIActionPerformed
 
     private void btBuscarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarVehiculosActionPerformed
-       CargarVehiculos ();
+       CargarVehiculos ();//llamada al metodo
         CargarClientes ();
     }//GEN-LAST:event_btBuscarVehiculosActionPerformed
 
@@ -2412,19 +2470,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btRentarVehiculoActionPerformed
 
     private void jButtonBuscarCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCantonesActionPerformed
-        CargarCantonE();
+        CargarCantonE(); //llamada al metodo
     }//GEN-LAST:event_jButtonBuscarCantonesActionPerformed
 
     private void jButtonBuscarDistritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarDistritosActionPerformed
-        CargarDistritoE ();
+        CargarDistritoE ();//llamada al metodo
     }//GEN-LAST:event_jButtonBuscarDistritosActionPerformed
 
     private void jButtonBuscarCantonesCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCantonesCActionPerformed
-        CargarCantonC();
+        CargarCantonC();//llamada al metodo
     }//GEN-LAST:event_jButtonBuscarCantonesCActionPerformed
 
     private void jButtonBuscarDistritosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarDistritosCActionPerformed
-        CargarDistritoC ();
+        CargarDistritoC ();//llamada al metodo
     }//GEN-LAST:event_jButtonBuscarDistritosCActionPerformed
 
     private void jComboBoxEscogerEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscogerEmpresaActionPerformed
@@ -2498,6 +2556,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btIngresarImagen1ActionPerformed
 
     private void btRegistrarVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarVehiculo1ActionPerformed
+          //se realizan todas las consultas necesarias para modificar un vehiculo 
+        //pues ciertos valores solo pueden ser tomados si estan predefinidos en la base de datos
+        //por ello se opta por utilizar combo box y no campos de texto
+        // se realiza pa parte de POO
         vehiculo.setAnioFabricacion(Integer.parseInt(txtdefAnno1.getText().toString()));
         vehiculo.setCapacidad(Integer.parseInt(txtdefCapacidad1.getText().toString()));
         vehiculo.setKilometraje(Integer.parseInt(txtdefKilometraje1.getText().toString()));
@@ -2567,6 +2629,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             archivofoto = new FileInputStream(txtrutaVeh1.getText());//Se lee la direccion de la imagen guardada en el campo de texto
             vehiculo.setFotoVehiculo(archivofoto);
             int exito=0;
+            //asignacion de las variables a una consulta de SQL
             exito= procedimiento.ModificarVehiculo(vehiculo.getPlaca(), vehiculo.getAnioFabricacion(), vehiculo.getIdEstilo(), vehiculo.getIdColor(),
                     vehiculo.getIdMarca(), vehiculo.getIdSede(), vehiculo.getIdTransmision(), vehiculo.getIdEstado(), vehiculo.getCapacidad(),
                     vehiculo.getKilometraje(), vehiculo.getPuertas(), vehiculo.getVin(), vehiculo.getMpg(), vehiculo.getCosto_dia(),
@@ -2588,9 +2651,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCosto1ActionPerformed
 
-    private void btRealizarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRealizarReservaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btRealizarReservaActionPerformed
+    private void btRealizarImpresionyPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRealizarImpresionyPDFActionPerformed
+    //realiza la impresion y el pdf del resumen
+        try {
+            jTextAreaResumen.print();
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, "Los datos no se pudieron imprimir\n"
+                                             + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE); 
+            Logger.getLogger(VistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btRealizarImpresionyPDFActionPerformed
 
     private void btAbrirImagenVehi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirImagenVehi1ActionPerformed
         // TODO add your handling code here:
@@ -2598,7 +2669,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
             Operador operador= new Operador();
             SendEmail correo= new SendEmail();
     private void jButtonEviarCorreoOperadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEviarCorreoOperadorActionPerformed
-           res =Conexiones.conexion.Consulta("select usuario from operador where usuario='"+txtCorreoUsuario.getText()+"'");
+        //  enviar el correo a los nuevos operadores   
+        res =Conexiones.conexion.Consulta("select usuario from operador where usuario='"+txtCorreoUsuario.getText()+"'");
            int contador=0;
            try {
                //Se verifica que el usuario no exista en la base de datos
@@ -2649,6 +2721,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEviarCorreoOperadorActionPerformed
 
     private void jButtonResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResumenActionPerformed
+       //    muestra el resumen de los datos tanto del cliente como del vehiculo 
+        //para posteriormente ser enviados a facturar 
         res = Conexiones.conexion.Consulta ("select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo"
                    +" from vehiculo join estilo on vehiculo.idEstilo=estilo.idEstilo "
                            + "INNER JOIN sede on vehiculo.idSede=sede.idSede where placa ="+jTextFieldPlacaEscogida.getText() );
@@ -2714,7 +2788,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btImagenLicencia;
     private javax.swing.JButton btIngresarImagen;
     private javax.swing.JButton btIngresarImagen1;
-    private javax.swing.JButton btRealizarReserva;
+    private javax.swing.JButton btRealizarImpresionyPDF;
     private javax.swing.JButton btRegistrarNuevoMantenimiento;
     private javax.swing.JButton btRegistrarVehiculo;
     private javax.swing.JButton btRegistrarVehiculo1;
@@ -2787,12 +2861,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelTipoCambio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

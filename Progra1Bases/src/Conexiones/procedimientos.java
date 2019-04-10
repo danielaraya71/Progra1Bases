@@ -379,6 +379,7 @@ public class procedimientos {
             return resultado;
     }
         
+        // metodo para agregar nuevos operadores a la base de datos
         public int ModificarVehiculo(int placa,int anioFabricacion,int idEstilo,int idColor,int idMarca,int idSede,int idTransmision,int idEstado,int capacidad,
                 int kilometraje,int puertas,int vin,int mpg,int costo_dia,int capacidadMaletas,FileInputStream fotoVehiculo){
             Connection entrada= null;
