@@ -1,5 +1,7 @@
 package Objetos;
 
+import java.util.Date;
+
 public class reserva {
     private int idReserva;
     private int cedula;

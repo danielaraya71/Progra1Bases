@@ -20,6 +20,7 @@ import com.itextpdf.text.pdf.PdfWriter; //contiene el
 //codigo necesario para crear un archivo PDF
 
 import com.itextpdf.text.pdf.PdfPTable; //contiene el
+import java.util.Date;
 //codigo necesario para tabular un archivo PDF
 
 
@@ -280,7 +281,7 @@ public class procedimientos {
         }        
         
         //Metodo que inserta reserva en base de datos
-        public int AgregarReserva(int idReserva,int cedula,int placa,int idSedeRecogida,int idSedeEntrega,String fInicio, String fFin,String fSolicitud,
+        public int AgregarReserva(int idReserva,int cedula,int placa,int idSedeRecogida,int idSedeEntrega,String fInicio, String fFin, String fSolicitud,
                 String usuario,int idWifi,int idAsistencia,int idGPS,int idAsientoNinio,int idDanio){
             Connection entrada= null;
 

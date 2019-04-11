@@ -367,9 +367,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextAreaSennasEmpresa1 = new javax.swing.JTextArea();
         jButtonCargarDatos = new javax.swing.JButton();
-        jComboBoxEscogerEmpresa = new javax.swing.JComboBox<>();
-        jComboBoxEscogerPlaca = new javax.swing.JComboBox<>();
-        jComboBoxtipoMantenimiento = new javax.swing.JComboBox<>();
+        jComboBoxEscogerEmpresa = new javax.swing.JComboBox<String>();
+        jComboBoxEscogerPlaca = new javax.swing.JComboBox<String>();
+        jComboBoxtipoMantenimiento = new javax.swing.JComboBox<String>();
         lblMontoMante = new javax.swing.JLabel();
         txtMontoMantenimiento = new javax.swing.JTextField();
         jPanelNuevaEmpresa = new javax.swing.JPanel();
@@ -388,9 +388,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextAreaSennasEmpresa = new javax.swing.JTextArea();
         btRegistrarempresa = new javax.swing.JButton();
-        jComboBoxtProvinciaEmpresa = new javax.swing.JComboBox<>();
-        jComboBoxCatonEmpresa = new javax.swing.JComboBox<>();
-        jComboBoxDistritoEmpresa = new javax.swing.JComboBox<>();
+        jComboBoxtProvinciaEmpresa = new javax.swing.JComboBox<String>();
+        jComboBoxCatonEmpresa = new javax.swing.JComboBox<String>();
+        jComboBoxDistritoEmpresa = new javax.swing.JComboBox<String>();
         jButtonBuscarCantones = new javax.swing.JButton();
         jButtonBuscarDistritos = new javax.swing.JButton();
         jPanelNuevosClientes = new javax.swing.JPanel();
@@ -423,9 +423,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         btRegistrarcliente = new javax.swing.JButton();
-        jComboBoxtProvinciaCliente = new javax.swing.JComboBox<>();
-        jComboBoxCatonCliente = new javax.swing.JComboBox<>();
-        jComboBoxDistritoCliente = new javax.swing.JComboBox<>();
+        jComboBoxtProvinciaCliente = new javax.swing.JComboBox<String>();
+        jComboBoxCatonCliente = new javax.swing.JComboBox<String>();
+        jComboBoxDistritoCliente = new javax.swing.JComboBox<String>();
         txtruta = new javax.swing.JTextField();
         jButtonBuscarCantonesC = new javax.swing.JButton();
         jButtonBuscarDistritosC = new javax.swing.JButton();
@@ -438,10 +438,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lblMarca2 = new javax.swing.JLabel();
         txtdefAnno = new javax.swing.JTextField();
         lbltipo = new javax.swing.JLabel();
-        jComboBoxdefEstilo = new javax.swing.JComboBox<>();
-        jComboBoxdefMarca = new javax.swing.JComboBox<>();
+        jComboBoxdefEstilo = new javax.swing.JComboBox<String>();
+        jComboBoxdefMarca = new javax.swing.JComboBox<String>();
         lblColores = new javax.swing.JLabel();
-        jComboBoxdefColor = new javax.swing.JComboBox<>();
+        jComboBoxdefColor = new javax.swing.JComboBox<String>();
         lblprecio1 = new javax.swing.JLabel();
         lblprecio2 = new javax.swing.JLabel();
         lblprecio3 = new javax.swing.JLabel();
@@ -456,9 +456,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         txtdefNumeroPuertas = new javax.swing.JTextField();
         txtdefVIN = new javax.swing.JTextField();
         txtdefMPG = new javax.swing.JTextField();
-        jComboBoxdefSede = new javax.swing.JComboBox<>();
+        jComboBoxdefSede = new javax.swing.JComboBox<String>();
         txtdefCapMaletas = new javax.swing.JTextField();
-        jComboBoxdefTransmision = new javax.swing.JComboBox<>();
+        jComboBoxdefTransmision = new javax.swing.JComboBox<String>();
         lblprecio10 = new javax.swing.JLabel();
         btIngresarImagen = new javax.swing.JButton();
         btRegistrarVehiculo = new javax.swing.JButton();
@@ -477,8 +477,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jComboBoxSedeRecoReserva = new javax.swing.JComboBox<>();
-        jComboBoxSedeEntregaReserva = new javax.swing.JComboBox<>();
+        jComboBoxSedeRecoReserva = new javax.swing.JComboBox<String>();
+        jComboBoxSedeEntregaReserva = new javax.swing.JComboBox<String>();
         jRadioButtonWIFI = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jRadioButtonASIS = new javax.swing.JRadioButton();
@@ -490,8 +490,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jDateChooserFFR = new com.toedter.calendar.JDateChooser();
         jDateChooserFAR = new com.toedter.calendar.JDateChooser();
         jButtonCargarDias = new javax.swing.JButton();
-        jComboBoxOperadores = new javax.swing.JComboBox<>();
+        jComboBoxOperadores = new javax.swing.JComboBox<String>();
         jTextFieldIDReserva = new javax.swing.JTextField();
+        jLabel40 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -501,12 +502,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jComboBoxTipoFiltro = new javax.swing.JComboBox<>();
+        jComboBoxTipoFiltro = new javax.swing.JComboBox<String>();
         jTextFieldCapFiltro = new javax.swing.JTextField();
         btBuscarVehiculos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVehiculosDispo = new javax.swing.JTable();
-        btRentarVehiculo = new javax.swing.JButton();
         btRealizarImpresionyPDF = new javax.swing.JButton();
         btAbrirImagenVehi1 = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
@@ -528,10 +528,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lblMarca8 = new javax.swing.JLabel();
         txtdefAnno1 = new javax.swing.JTextField();
         lbltipo2 = new javax.swing.JLabel();
-        jComboBoxdefEstilo1 = new javax.swing.JComboBox<>();
-        jComboBoxdefMarca1 = new javax.swing.JComboBox<>();
+        jComboBoxdefEstilo1 = new javax.swing.JComboBox<String>();
+        jComboBoxdefMarca1 = new javax.swing.JComboBox<String>();
         lblColores2 = new javax.swing.JLabel();
-        jComboBoxdefColor1 = new javax.swing.JComboBox<>();
+        jComboBoxdefColor1 = new javax.swing.JComboBox<String>();
         lblprecio11 = new javax.swing.JLabel();
         lblprecio14 = new javax.swing.JLabel();
         lblprecio15 = new javax.swing.JLabel();
@@ -546,16 +546,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         txtdefNumeroPuertas1 = new javax.swing.JTextField();
         txtdefVIN1 = new javax.swing.JTextField();
         txtdefMPG1 = new javax.swing.JTextField();
-        jComboBoxdefSede1 = new javax.swing.JComboBox<>();
+        jComboBoxdefSede1 = new javax.swing.JComboBox<String>();
         txtdefCapMaletas1 = new javax.swing.JTextField();
-        jComboBoxdefTransmision1 = new javax.swing.JComboBox<>();
+        jComboBoxdefTransmision1 = new javax.swing.JComboBox<String>();
         lblprecio22 = new javax.swing.JLabel();
         btIngresarImagen1 = new javax.swing.JButton();
         btRegistrarVehiculo1 = new javax.swing.JButton();
         txtrutaVeh1 = new javax.swing.JTextField();
         jTextCosto1 = new javax.swing.JTextField();
         lblMarca6 = new javax.swing.JLabel();
-        jComboBoxEscogerPlaca1 = new javax.swing.JComboBox<>();
+        jComboBoxEscogerPlaca1 = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -597,16 +597,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxEscogerEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscogerEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEscogerEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEscogerEmpresaActionPerformed(evt);
             }
         });
 
-        jComboBoxEscogerPlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscogerPlaca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxtipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxtipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxtipoMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxtipoMantenimientoActionPerformed(evt);
@@ -634,7 +634,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                         .addComponent(jButtonCargarDatos)
-                        .addContainerGap(653, Short.MAX_VALUE))
+                        .addContainerGap(696, Short.MAX_VALUE))
                     .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
                         .addGroup(jPanelIngresarVehiculos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelIngresarVehiculos1Layout.createSequentialGroup()
@@ -719,13 +719,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanelNuevosServicios.setLayout(jPanelNuevosServiciosLayout);
         jPanelNuevosServiciosLayout.setHorizontalGroup(
             jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 833, Short.MAX_VALUE)
             .addGroup(jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelIngresarVehiculos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelNuevosServiciosLayout.setVerticalGroup(
             jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
             .addGroup(jPanelNuevosServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelNuevosServiciosLayout.createSequentialGroup()
                     .addComponent(jPanelIngresarVehiculos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -784,11 +784,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxtProvinciaEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxtProvinciaEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxCatonEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCatonEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxDistritoEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDistritoEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonBuscarCantones.setText("Mostrar Cantones");
         jButtonBuscarCantones.addActionListener(new java.awt.event.ActionListener() {
@@ -899,7 +899,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel33)
                             .addComponent(btRegistrarempresa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButtonBuscarDistritos))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(414, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelNuevaEmpresaLayout = new javax.swing.GroupLayout(jPanelNuevaEmpresa);
@@ -1015,16 +1015,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxtProvinciaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxtProvinciaCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxtProvinciaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxtProvinciaClienteActionPerformed(evt);
             }
         });
 
-        jComboBoxCatonCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCatonCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxDistritoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDistritoCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonBuscarCantonesC.setText("Mostrar Cantones");
         jButtonBuscarCantonesC.addActionListener(new java.awt.event.ActionListener() {
@@ -1076,7 +1076,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                         .addComponent(txtPrimernombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtsegundonombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 181, Short.MAX_VALUE))))
+                                        .addGap(0, 224, Short.MAX_VALUE))))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel6)))
@@ -1137,7 +1137,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btRegistrarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel20))
-                                        .addGap(0, 161, Short.MAX_VALUE))
+                                        .addGap(0, 207, Short.MAX_VALUE))
                                     .addGroup(panelLayout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1221,7 +1221,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(jLabel21)
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btRegistrarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(57, Short.MAX_VALUE))
+                                .addContainerGap(191, Short.MAX_VALUE))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(jButtonBuscarDistritosC)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -1260,13 +1260,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lbltipo.setText("Estilo");
 
-        jComboBoxdefEstilo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefEstilo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxdefMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblColores.setText("Color");
 
-        jComboBoxdefColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblprecio1.setText("Capacidad");
 
@@ -1286,9 +1286,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lblprecio9.setText("Costo");
 
-        jComboBoxdefSede.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefSede.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxdefTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefTransmision.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblprecio10.setText("Imagen");
 
@@ -1422,7 +1422,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(txtrutaVeh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(btRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         jTabbedPaneNuevosRegistros.addTab("Ingresar Vehiculos", jPanelIngresarVehiculos);
@@ -1455,7 +1455,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(43, 43, 43)
                         .addComponent(txtCorreoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                         .addComponent(jButtonEviarCorreoOperador)
                         .addGap(71, 71, 71))))
         );
@@ -1469,7 +1469,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonEviarCorreoOperador))
                 .addGap(38, 38, 38)
                 .addComponent(jLabel5)
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addContainerGap(639, Short.MAX_VALUE))
         );
 
         jTabbedPaneNuevosRegistros.addTab("Registrar Operador ", jPanel5);
@@ -1495,9 +1495,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(240, 240, 240));
         jLabel28.setText("Fecha actual");
 
-        jComboBoxSedeRecoReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSedeRecoReserva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxSedeEntregaReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSedeEntregaReserva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jRadioButtonWIFI.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonWIFI.setText("WIFI");
@@ -1533,9 +1533,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxOperadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxOperadores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextFieldIDReserva.setText("jTextField1");
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("ID Reserva");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1593,7 +1594,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBoxOperadores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldIDReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))
+                            .addComponent(jTextFieldIDReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                            .addComponent(jLabel40))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1617,20 +1619,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
                             .addComponent(jComboBoxOperadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooserFFR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelCantidadDias))
-                                .addGap(9, 9, 9)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioButtonWIFI)
-                                    .addComponent(jRadioButtonGPS)
-                                    .addComponent(jRadioButtonDano)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jTextFieldIDReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDateChooserFFR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelCantidadDias)
+                                .addComponent(jLabel40)))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButtonWIFI)
+                            .addComponent(jRadioButtonGPS)
+                            .addComponent(jRadioButtonDano)
+                            .addComponent(jTextFieldIDReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButtonASIENTO)
@@ -1690,7 +1690,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(240, 240, 240));
         jLabel35.setText("Capacidad");
 
-        jComboBoxTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btBuscarVehiculos.setBackground(new java.awt.Color(255, 153, 0));
         btBuscarVehiculos.setText("Buscar");
@@ -1717,7 +1717,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jTextFieldCapFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
                 .addComponent(btBuscarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1748,14 +1748,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTableVehiculosDispo);
-
-        btRentarVehiculo.setBackground(new java.awt.Color(255, 153, 0));
-        btRentarVehiculo.setText("Rentar vehiculo seleccionado");
-        btRentarVehiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRentarVehiculoActionPerformed(evt);
-            }
-        });
 
         btRealizarImpresionyPDF.setBackground(new java.awt.Color(255, 153, 0));
         btRealizarImpresionyPDF.setText("Imprimir y generar PDF");
@@ -1815,10 +1807,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabelTipoCambio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1844,7 +1833,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                             .addComponent(jTextFieldCedulaReserva))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(59, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1881,9 +1870,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(btAbrirImagenVehi1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel38)
                     .addComponent(jLabelTipoCambio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(btRentarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRealizarResservaLayout = new javax.swing.GroupLayout(jPanelRealizarResserva);
@@ -1918,14 +1905,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelConsultarReservaLayout.createSequentialGroup()
                 .addGap(218, 218, 218)
                 .addComponent(jButton1)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addContainerGap(490, Short.MAX_VALUE))
         );
         jPanelConsultarReservaLayout.setVerticalGroup(
             jPanelConsultarReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelConsultarReservaLayout.createSequentialGroup()
                 .addGap(166, 166, 166)
                 .addComponent(jButton1)
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addContainerGap(569, Short.MAX_VALUE))
         );
 
         jTabbedPaneReservas.addTab("ConsultarReserva", jPanelConsultarReserva);
@@ -1943,13 +1930,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lbltipo2.setText("Estilo");
 
-        jComboBoxdefEstilo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefEstilo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxdefMarca1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefMarca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblColores2.setText("Color");
 
-        jComboBoxdefColor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefColor1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblprecio11.setText("Capacidad");
 
@@ -1969,9 +1956,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         lblprecio21.setText("Costo");
 
-        jComboBoxdefSede1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefSede1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxdefTransmision1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdefTransmision1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblprecio22.setText("Imagen");
 
@@ -2024,13 +2011,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
                             .addComponent(jComboBoxdefEstilo1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxdefColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelIngresarVehiculos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btIngresarImagen1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                .addComponent(btIngresarImagen1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE)
                                 .addComponent(txtdefCapacidad1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtdefKilometraje1, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(19, 19, 19)
                         .addGroup(jPanelIngresarVehiculos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelIngresarVehiculos2Layout.createSequentialGroup()
-                                .addGap(0, 215, Short.MAX_VALUE)
+                                .addGap(0, 230, Short.MAX_VALUE)
                                 .addGroup(jPanelIngresarVehiculos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblprecio15)
                                     .addComponent(lblprecio16)
@@ -2107,7 +2094,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lblMarca6.setForeground(new java.awt.Color(255, 255, 255));
         lblMarca6.setText("Placa de los vehiculos que se encuentran activos:");
 
-        jComboBoxEscogerPlaca1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscogerPlaca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanelEditarVehiLayout = new javax.swing.GroupLayout(jPanelEditarVehi);
         jPanelEditarVehi.setLayout(jPanelEditarVehiLayout);
@@ -2130,7 +2117,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jComboBoxEscogerPlaca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelIngresarVehiculos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(371, Short.MAX_VALUE))
         );
 
         jTabbedPaneEditar.addTab("Editar Vehiculo", jPanelEditarVehi);
@@ -2141,11 +2128,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPanelPrincipal)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 668, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2553,10 +2544,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         CargarClientes ();
     }//GEN-LAST:event_btBuscarVehiculosActionPerformed
 
-    private void btRentarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRentarVehiculoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btRentarVehiculoActionPerformed
-
     private void jButtonBuscarCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCantonesActionPerformed
         CargarCantonE(); //llamada al metodo
     }//GEN-LAST:event_jButtonBuscarCantonesActionPerformed
@@ -2812,40 +2799,43 @@ public class VistaPrincipal extends javax.swing.JFrame {
   //    reserv.setfInicio(jDateChooserFIR.getDateEditor());
  //     reserv.setfFin(jDateChooserFFR.getText());
  //     reserv.setfSolicitud(jDateChooserFAR);
+        reserv.setfSolicitud("04/04/2019");
+        reserv.setfInicio("04/05/2019");
+        reserv.setfFin("04/09/2019");
       int precioWF;
       float precioGPS, precioDanio, precioasis,  precioAsiento;
-        CalcularDias(jDateChooserFIR, jDateChooserFFR);
-        reserv.setIdReserva(Integer.parseInt(jTextFieldIDReserva.getText().toString()));
-          if(jRadioButtonWIFI.isSelected()){
-            reserv.setIdWifi(1);
-            precioWF= 15;
+      CalcularDias(jDateChooserFIR, jDateChooserFFR);
+      reserv.setIdReserva(Integer.parseInt(jTextFieldIDReserva.getText().toString()));
+      if(jRadioButtonWIFI.isSelected()){
+          reserv.setIdWifi(1);
+          precioWF= 15;
         }
-          else {
-              reserv.setIdWifi(0);
-              precioWF= 0;
-          }
+      else {
+          reserv.setIdWifi(0);
+          precioWF= 0;
+        }
           //para GPS
-           if(jRadioButtonGPS.isSelected()){
-            reserv.setIdGPS(1);
-             precioGPS = (float) 13.99;
+      if(jRadioButtonGPS.isSelected()){
+           reserv.setIdGPS(1);
+           precioGPS = (float) 13.99;
         }
-          else {
-              reserv.setIdGPS(0);
-                precioGPS = 0;
-          }
+      else {
+           reserv.setIdGPS(0);
+           precioGPS = 0;
+        }
            //para danios
-            if(jRadioButtonDano.isSelected()){
-            reserv.setIdDanio(1);
-              precioDanio = (float) 12.99;
+      if(jRadioButtonDano.isSelected()){
+           reserv.setIdDanio(1);
+           precioDanio = (float) 12.99;
         }
-          else {
-              reserv.setIdDanio(0);
-              precioDanio = (float) 0;
-          }
+       else {
+           reserv.setIdDanio(0);
+           precioDanio = (float) 0;
+        }
             //para asistencia
-             if(jRadioButtonASIS.isSelected()){
-            reserv.setIdAsistencia(1);
-             precioasis = (float) 3.99;
+       if(jRadioButtonASIS.isSelected()){
+           reserv.setIdAsistencia(1);
+           precioasis = (float) 3.99;
         }
           else {
               reserv.setIdAsistencia(0);
@@ -2860,11 +2850,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
               reserv.setIdAsientoNinio(0);
                 precioAsiento = (float) 0;
           }
-             /*      //para la placa
+                   //para la placa
              res =Conexiones.conexion.Consulta("SELECT placa FROM vehiculo WHERE placa='"+jTextFieldPlacaEscogida.getText()+"'");
              try {
              while(res.next()){
-             reserv.setPlaca(res.getInt("placa"));
+                reserv.setPlaca(res.getInt("placa"));
              }
              }
              catch (Exception e) {
@@ -2873,34 +2863,34 @@ public class VistaPrincipal extends javax.swing.JFrame {
              res =Conexiones.conexion.Consulta("SELECT cedula FROM cliente WHERE cedula='"+jTextFieldCedulaReserva.getText()+"'");
              try {
              while(res.next()){
-             reserv.setCedula(res.getInt("cedula"));
+                reserv.setCedula(res.getInt("cedula"));
              }
              }
              catch (Exception e) {
              }
              //para sede recogida
-             res =Conexiones.conexion.Consulta("SELECT idSede FROM vehiculo join sede on vehiculo.idSede=sede.idSede  WHERE nombreSede='"+jComboBoxSedeRecoReserva.getSelectedItem().toString()+"'");
+             res =Conexiones.conexion.Consulta("SELECT idSede FROM sede WHERE nombreSede='"+jComboBoxSedeRecoReserva.getSelectedItem().toString()+"'");
              try {
              while(res.next()){
-             reserv.setIdSedeRecogida(res.getInt("idSedeRecogida"));
+                reserv.setIdSedeRecogida(res.getInt("idSede"));
              }
              }
              catch (Exception e) {
              }
              //sede entrega
-             res =Conexiones.conexion.Consulta("SELECT idSede FROM vehiculo join sede on vehiculo.idSede=sede.idSede  WHERE nombreSede='"+jComboBoxSedeEntregaReserva.getSelectedItem().toString()+"'");
+             res =Conexiones.conexion.Consulta("SELECT idSede FROM sede WHERE nombreSede='"+jComboBoxSedeEntregaReserva.getSelectedItem().toString()+"'");
              try {
              while(res.next()){
-             reserv.setIdSedeEntrega(res.getInt("idSedeEntrega"));
+                reserv.setIdSedeEntrega(res.getInt("idSede"));
              }
              }
              catch (Exception e) {
              }
              //operador
-             res =Conexiones.conexion.Consulta("SELECT usuario FROM operador WHERE nombreSede='"+jComboBoxOperadores.getSelectedItem().toString()+"'");
+             res =Conexiones.conexion.Consulta("SELECT usuario FROM operador WHERE usuario='"+jComboBoxOperadores.getSelectedItem().toString()+"'");
              try {
              while(res.next()){
-             reserv.setUsuario(res.getString("usuario"));
+                reserv.setUsuario(res.getString("usuario"));
              }
              }
              catch (Exception e) {
@@ -2911,12 +2901,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
              reserv.getfFin(),reserv.getfSolicitud(),reserv.getUsuario(),reserv.getIdWifi(), reserv.getIdAsistencia(),
              reserv.getIdGPS(), reserv.getIdAsientoNinio(), reserv.getIdDanio());
              if(exito>0){
-             JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente",
-             "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente",
+                 "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
              }else{
-             JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
-             + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE);
-             }*/
+                 JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
+                 + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE);
+             }
 //    muestra el resumen de los datos tanto del cliente como del vehiculo 
         //para posteriormente ser enviados a facturar 
         res = Conexiones.conexion.Consulta ("select placa , capacidad, puertas, costo_dia, capacidadMaletas, nombreEstilo"
@@ -3033,7 +3023,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btRegistrarVehiculo1;
     private javax.swing.JButton btRegistrarcliente;
     private javax.swing.JButton btRegistrarempresa;
-    private javax.swing.JButton btRentarVehiculo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarCantones;
     private javax.swing.JButton jButtonBuscarCantonesC;
@@ -3106,6 +3095,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
